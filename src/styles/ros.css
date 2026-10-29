@@ -1,0 +1,93 @@
+/* Ray of Sunshine accent layer on top of Pulse v4 Glass. Pulse keeps its
+   surfaces, type and motion; the brand arrives through the accent (sun
+   yellow on navy, or RoS blue in the light theme) and a few brand tokens. */
+:root{
+  --ros-blue:#1B75BB;--ros-blue-dark:#0F5A94;--ros-navy:#060068;--ros-yellow:#FFF100;--ros-pale:#FFF9B0;
+  --ros-teal:#53948D;--ros-green:#8DB35E;--ros-lime:#C6D22F;--ros-warn:#F5A524;--ros-danger:#D93838;
+  --info:#5aa8e6;--info-soft:rgba(27,117,187,.16);
+}
+[data-theme="sunshine"]{
+--ui:"Geist",system-ui,sans-serif;--mono:"Geist",system-ui,sans-serif;--fig-weight:600;--card-r:22px;--cta-r:999px;--chip-r:999px;--panel:#0b1127;--r-ctl:999px;--r-md:16px;--r-sm:12px;
+--kpi-band:#0b1127;--kpi-card:#111938;--kpi-ink:#f4f6fb;--kpi-dim:#9ba5c4;--kpi-up:#9cc56a;--kpi-down:#ef6262;
+--rail-active:#151d3c;--rail-active-ink:#FFF100;--rail-active-ring:inset 0 1px 0 rgba(255,255,255,.04);
+--bg:#070b1d;--rail:#0a0f24;--surface:#10172f;--surface-2:#151d3a;
+--surface-strong:#131a35;--overlay:rgba(13,19,42,.97);--tooltip:#18203f;--tooltip-ink:#f4f6fb;
+--border:rgba(255,255,255,.075);--border-strong:rgba(255,255,255,.15);--card-shadow:0 1px 0 rgba(255,255,255,.03) inset;
+--ink:#f4f6fb;--body:#cfd6ea;--dim:#9ba5c4;--faint:#6b7599;--mid:#8790b0;
+--accent:#FFF100;--on-accent:#060068;--on-accent-2:rgba(6,0,104,.7);--on-accent-strong:rgba(6,0,104,.88);--on-accent-soft:rgba(6,0,104,.2);
+--accent-hover:#fff75c;--accent-soft:rgba(255,241,0,.14);--accent-faint:rgba(255,241,0,.06);--accent-line:rgba(255,241,0,.32);
+--accent-fill:linear-gradient(90deg,#FFE600 0%,#FFF56B 100%);--accent-glow:0 0 24px rgba(255,241,0,.2);
+--ok:#9cc56a;--ok-soft:rgba(141,179,94,.16);--warn:#F5A524;--warn-soft:rgba(245,165,36,.15);--bad:#ef6262;--bad-soft:rgba(217,56,56,.17);--bad-on-accent:#7a1414;--bad-on-accent-ink:#6b1010;
+--neutral:rgba(255,255,255,.22);--track:#202a4d;--scrim:rgba(4,6,16,.62);
+--pill-bg:#1b2448;--pill-ink:#f4f6fb;--surface-faint:#0d142c;
+--glass-surface:#111938;--glass-surface-2:#151d3c;--glass-border:rgba(255,255,255,.09);--glass-highlight:rgba(255,255,255,.05);--glass-shadow:rgba(0,0,0,.55);--glass-tint:rgba(27,117,187,.12);
+--flap:linear-gradient(178deg,#18203f 0%,#131a35 49%,#0e142b 51%,#151d3a 100%);--flap-hinge:rgba(0,0,0,.6);--flap-notch:#070b1d;
+--glow-a:rgba(255,241,0,.05);--glow-b:rgba(27,117,187,.09);--grid:rgba(255,255,255,.02);--ease:cubic-bezier(.2,.8,.2,1);
+--bloom-a:rgba(255,241,0,.28);--bloom-b:rgba(27,117,187,.42);--bloom-c:rgba(83,148,141,.32);--hero-field:#10172f;--records-card:#10172f;--chip:#10172f;--chip-border:rgba(255,255,255,.08);
+--hero-grad:linear-gradient(180deg,#070b1d 0%,#0b1a45 22%,#0f3a78 46%,#1B75BB 64%,#0d2e66 84%,#070b1d 100%);
+--info:#6cb4ec;--info-soft:rgba(27,117,187,.2)}
+[data-theme="sunshine"] [data-kpi-band]{--on-accent:#f4f6fb;--on-accent-2:#8790b0;--on-accent-strong:#cfd6ea;--on-accent-soft:rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.06)}
+/* Daylight: the default theme. Soft cool white, navy type, Ray of Sunshine blue
+   for actions and sun yellow kept for small highlights (always navy text on yellow). */
+[data-theme="light"]{
+--ui:"Geist",system-ui,sans-serif;--mono:"Geist",system-ui,sans-serif;--fig-weight:600;--card-r:22px;--cta-r:999px;--chip-r:999px;--r-ctl:999px;--r-md:16px;--r-sm:12px;
+--panel:#FAFBFE;--bg:#F4F6FB;--rail:transparent;--surface:#FFFFFF;--surface-2:#F2F5FA;--surface-strong:#FFFFFF;--surface-faint:#F7F9FC;
+--overlay:rgba(255,255,255,.97);--tooltip:#0E1440;--tooltip-ink:#FFFFFF;
+--border:rgba(14,20,64,.09);--border-strong:rgba(14,20,64,.17);--card-shadow:0 1px 2px rgba(14,20,64,.04),0 8px 24px rgba(14,20,64,.045);
+--ink:#0E1440;--body:#353D62;--dim:#596182;--faint:#868DA8;--mid:#6B7392;
+--accent:#1B75BB;--on-accent:#FFFFFF;--on-accent-2:rgba(255,255,255,.8);--on-accent-strong:rgba(255,255,255,.94);--on-accent-soft:rgba(255,255,255,.3);
+--accent-hover:#0F5A94;--accent-soft:rgba(27,117,187,.1);--accent-faint:rgba(27,117,187,.05);--accent-line:rgba(27,117,187,.3);
+--accent-fill:linear-gradient(135deg,#1B75BB 0%,#2C8CD8 100%);--accent-glow:0 6px 16px rgba(27,117,187,.22);
+--ok:#3F8F5A;--ok-soft:rgba(63,143,90,.12);--warn:#C77A12;--warn-soft:rgba(199,122,18,.12);--bad:#C9382F;--bad-soft:rgba(201,56,47,.1);
+--bad-on-accent:#ffd9d4;--bad-on-accent-ink:#8c2118;
+--info:#1B75BB;--info-soft:rgba(27,117,187,.1);
+--neutral:rgba(14,20,64,.24);--track:#E5EAF2;--scrim:rgba(14,20,64,.26);
+--pill-bg:#FFFFFF;--pill-ink:#0E1440;
+--rail-active:#FFFFFF;--rail-active-ink:#1B75BB;--rail-active-ring:0 1px 2px rgba(14,20,64,.06),inset 0 0 0 1px rgba(14,20,64,.07);
+--kpi-band:#F4F6FB;--kpi-card:#FFFFFF;--kpi-ink:#0E1440;--kpi-dim:#596182;--kpi-up:#3F8F5A;--kpi-down:#C9382F;
+--glass-surface:rgba(255,255,255,.75);--glass-surface-2:rgba(255,255,255,.88);--glass-border:rgba(14,20,64,.08);--glass-highlight:rgba(255,255,255,.9);--glass-shadow:rgba(14,20,64,.14);--glass-tint:rgba(27,117,187,.06);
+--flap:linear-gradient(178deg,#FFFFFF 0%,#F1F4FA 49%,#E7ECF4 51%,#F8FAFD 100%);--flap-hinge:rgba(14,20,64,.12);--flap-notch:var(--bg);
+--glow-a:rgba(255,233,77,.12);--glow-b:rgba(27,117,187,.06);--grid:rgba(14,20,64,.035);
+--bloom-a:rgba(255,233,77,.38);--bloom-b:rgba(27,117,187,.2);--bloom-c:rgba(83,148,141,.18);
+--hero-field:#FFFFFF;--records-card:#FFFFFF;--chip:#FFFFFF;--chip-border:rgba(14,20,64,.1);
+--hero-grad:linear-gradient(180deg,#F4F6FB 0%,#E4EEF9 24%,#D2E5F6 46%,#EAF2FB 70%,#F4F6FB 100%);
+--ros-yellow:#FFE94D;--ros-pale:#FFF6C7;
+--demo-bg:#FFF1A8;--demo-ink:#0E1440}
+[data-theme="light"] [data-kpi-band]{--on-accent:#0E1440;--on-accent-2:#596182;--on-accent-strong:#353D62;--on-accent-soft:rgba(14,20,64,.08)}
+[data-theme="light"] .ros-print{box-shadow:0 0 0 1px rgba(14,20,64,.08),0 10px 30px rgba(14,20,64,.08) !important}
+[data-theme="light"] ::selection{background:#FFE94D;color:#0E1440}
+[data-theme="light"] button[style*="background:var(--ink)"],[data-theme="light"] [style*="background-color:var(--ink)"]{background:#1B75BB !important}
+
+/* RoS module layout helpers: one place for the responsive rules. */
+.ros-page{padding:22px 28px 96px;animation:pageIn .5s var(--ease) both;max-width:1600px;margin:0 auto}
+.ros-scroll-x{overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.ros-scroll-x>*{flex-shrink:0}
+.ros-row-hover:hover{background:var(--surface-2)}
+.ros-link{cursor:pointer;color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--border-strong)}
+.ros-link:hover{color:var(--accent);border-bottom-color:var(--accent-line)}
+.ros-btn{transition:transform .16s var(--ease),background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease)}
+.ros-btn:hover:not(:disabled){transform:translateY(-1px)}
+.ros-btn:active:not(:disabled){transform:translateY(0) scale(.98)}
+.ros-btn:focus-visible,.ros-focus:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ros-card-click{cursor:pointer;transition:border-color .2s var(--ease),transform .2s var(--ease)}
+.ros-card-click:hover{border-color:var(--border-strong) !important;transform:translateY(-1px)}
+.ros-input{width:100%;height:36px;padding:0 12px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm,10px);font-size:13px;color:var(--ink);outline:0}
+.ros-input:focus{border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-faint)}
+textarea.ros-input{height:auto;padding:10px 12px;line-height:1.55;resize:vertical}
+select.ros-input{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--dim) 50%),linear-gradient(135deg,var(--dim) 50%,transparent 50%);background-position:calc(100% - 15px) 15px,calc(100% - 10px) 15px;background-size:5px 5px;background-repeat:no-repeat;padding-right:28px}
+.ros-split{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}
+.ros-split-even{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.ros-split-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.ros-drawer{width:min(620px,100%)}
+@media (max-width:1100px){.ros-split,.ros-split-3{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:820px){.ros-split-even{grid-template-columns:minmax(0,1fr)}.ros-page{padding:16px 16px 96px}.ros-hide-sm{display:none !important}}
+/* The original Pulse layouts were drawn for 1024px and up. Below that, their fixed
+   grids reflow into as many columns as fit and their rows wrap, so nothing scrolls sideways. */
+@media (max-width:900px){
+  .pulse-core [style*="grid-template-columns"]{grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)) !important}
+  .pulse-core [style*="display: flex"]:not(button):not(svg){flex-wrap:wrap}
+  .pulse-core [style*="width: 352px"],.pulse-core [style*="width: 320px"]{width:100% !important}
+}
+@keyframes rosPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,98,98,.5)}50%{box-shadow:0 0 0 6px rgba(239,98,98,0)}}
+@keyframes rosToastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.ros-page{animation:none}}

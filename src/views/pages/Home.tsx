@@ -8,7 +8,7 @@ type Props = { v: any };
 export default function Home({ v }: Props) {
   return (
     <>
-      <div style={{"position":"relative","display":"flex","gap":"20px","height":"100%","padding":"0 22px 22px"}}>
+      <div style={{"position":"relative","display":"flex","flexDirection":v.narrow ? "column" : "row","gap":"20px","height":v.narrow ? "auto" : "100%","minHeight":"100%","padding":v.narrow ? "0 14px 22px" : "0 22px 22px"}}>
         <div style={css(v.homeCanvasStyle)} />
         <div style={css(v.chatColumnStyle)}>
           {v.heliosEmpty && (
@@ -20,7 +20,7 @@ export default function Home({ v }: Props) {
             {v.heliosEmpty && (
               <>
                 <div style={{"flex":"0 0 auto","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"flex-end","textAlign":"center","padding":"clamp(4px,1.2vh,14px) 8px clamp(20px,3.2vh,34px)"}}>
-                  <button className="ixf" onClick={v.goApprovals} style={{"display":"inline-flex","alignItems":"center","gap":"9px","height":"30px","padding":"0 6px 0 11px","border":"1px solid var(--border)","borderRadius":"var(--r-ctl,11px)","background":"var(--surface-faint)","backdropFilter":"blur(18px) saturate(1.25)","fontFamily":"var(--mono)","fontSize":"9px","letterSpacing":"0.16em","color":"var(--dim)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease),background .2s var(--ease)"}}>
+                  <button className="ixf" onClick={v.goApprovals} style={{"display":"inline-flex","maxWidth":"100%","alignItems":"center","gap":"9px","height":"30px","padding":"0 6px 0 11px","border":"1px solid var(--border)","borderRadius":"var(--r-ctl,11px)","background":"var(--surface-faint)","backdropFilter":"blur(18px) saturate(1.25)","fontFamily":"var(--mono)","fontSize":"9px","letterSpacing":"0.16em","color":"var(--dim)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease),background .2s var(--ease)"}}>
                     <span style={{"width":"5px","height":"5px","flex":"none","borderRadius":"2px","background":"var(--accent)","boxShadow":"0 0 8px var(--accent)","animation":"breathe 2.8s ease-in-out infinite"}} />
                     <span style={{"minWidth":"0","whiteSpace":"nowrap","overflow":"hidden","textOverflow":"ellipsis"}}>
                       {txt(v.approvalsPill)}

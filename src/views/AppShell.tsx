@@ -18,6 +18,9 @@ import AgentStudio from "./overlays/AgentStudio";
 import NewRecordDialog from "./overlays/NewRecordDialog";
 import CommandPalette from "./overlays/CommandPalette";
 import BackgroundGallery from "./overlays/BackgroundGallery";
+import { RosPage, DemoStrip, RosOverlays, BrandMark } from "../ros/chrome";
+import AgentsTabs from "../ros/modules/AgentsTabs";
+import RecordsExtra from "../ros/modules/RecordsExtra";
 
 type Props = { v: any };
 
@@ -28,18 +31,19 @@ export default function AppShell({ v }: Props) {
       <div style={{"position":"absolute","width":"1px","height":"1px","overflow":"hidden","opacity":"0","pointerEvents":"none"}}>
         <AgentFace shape={"crown-pebble"} state={"idle"} tint={"#191c1f"} size={"1"} />
       </div>
-      <nav data-rail-nav="1" style={css(v.railOuter)}>
+      {v.narrow && v.mobileRail && <div onClick={v.toggleMobileRail} style={{"position":"fixed","inset":"0","zIndex":"75","background":"var(--scrim)","backdropFilter":"blur(4px)"}} />}
+      {!(v.phoneRole && v.narrow) && <nav data-rail-nav="1" style={css(v.railOuter)}>
         <span style={css(v.railThumbStyle)} />
         <div style={css(cat(v.railRowStyle, "margin-bottom:22px"))}>
-          <button className={cx("ix0", "ix1")} onClick={v.toggleRail} title={v.railLabel} style={{"width":"36px","height":"36px","flex":"none","border":"0","borderRadius":"var(--cta-r,11px)","background":"var(--accent-fill,var(--accent))","color":"var(--on-accent)","boxShadow":"var(--accent-glow,none)","cursor":"pointer","display":"flex","alignItems":"center","justifyContent":"center","fontSize":"13px","fontWeight":"600","padding":"0","transition":"transform .2s var(--ease)"}}>
-            {"K"}
+          <button className={cx("ix0", "ix1")} onClick={v.toggleRail} title={v.railLabel} style={{"width":"38px","height":"38px","flex":"none","border":"0","borderRadius":"999px","background":"none","cursor":"pointer","display":"flex","alignItems":"center","justifyContent":"center","padding":"0","transition":"transform .2s var(--ease)"}}>
+            <BrandMark size={38} />
           </button>
           <span style={css(v.brandStyle)}>
             <span style={{"display":"block","fontSize":"15px","fontWeight":"600","letterSpacing":"-.3px","color":"var(--ink)"}}>
-              {"Kilbride Group"}
+              {"Ray of Sunshine"}
             </span>
             <span style={{"display":"block","marginTop":"2px","fontSize":"9px","fontWeight":"500","letterSpacing":".16em","color":"var(--accent)"}}>
-              {"PULSE · OPERATIONS"}
+              {"OS · BY PULSE"}
             </span>
           </span>
           {v.railOpen && (
@@ -54,6 +58,14 @@ export default function AppShell({ v }: Props) {
         </div>
         {arr(v.nav).map((item: any, i0: number) => (
           <Fragment key={i0}>
+            {item?.isGroup && (
+              <button className="ix3 ros-focus" onClick={item?.toggle} title={item?.shut ? "Show " + item?.label : "Hide " + item?.label}
+                style={{"display":"flex","alignItems":"center","gap":"8px","width":item?.railOpen ? "100%" : "44px","height":"26px","margin":i0 ? "10px 0 2px" : "0 0 2px","padding":item?.railOpen ? "0 14px" : "0","justifyContent":item?.railOpen ? "flex-start" : "center","border":"0","background":"none","color":"var(--faint)","cursor":"pointer","fontFamily":"var(--mono)","fontSize":"9.5px","letterSpacing":".13em","textTransform":"uppercase","whiteSpace":"nowrap","flex":"none"}}>
+                {item?.railOpen ? <span style={{"flex":"1","textAlign":"left","overflow":"hidden","textOverflow":"ellipsis"}}>{item?.label}</span> : <span style={{"width":"20px","height":"1px","background":"var(--track)"}} />}
+                {item?.railOpen && item?.shut && <span style={{"fontSize":"10px","color":"var(--dim)","letterSpacing":"0"}}>{item?.count}</span>}
+                {item?.railOpen && <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" style={{"transform":item?.shut ? "rotate(-90deg)" : "none","transition":"transform .2s var(--ease)"}}><path d="m6 9 6 6 6-6" /></svg>}
+              </button>
+            )}
             {item?.isDivider && (
               <>
                 <div style={{"width":"20px","height":"1px","background":"var(--track)","margin":"7px 0"}} />
@@ -96,14 +108,14 @@ export default function AppShell({ v }: Props) {
               </div>
               <div style={{"display":"flex","alignItems":"center","gap":"11px","marginTop":"12px"}}>
                 <div style={{"width":"40px","height":"40px","flex":"none","borderRadius":"999px","background":"var(--accent-soft)","color":"var(--accent)","display":"flex","alignItems":"center","justifyContent":"center","fontSize":"13px","fontWeight":"600"}}>
-                  {"MK"}
+                  {v.rosRoleDef?.initials}
                 </div>
                 <div style={{"minWidth":"0"}}>
-                  <div style={{"fontSize":"17px","fontWeight":"600","letterSpacing":"-.3px","color":"var(--ink)","whiteSpace":"nowrap","overflow":"hidden","textOverflow":"ellipsis"}}>
-                    {"Martin Kilbride"}
+                  <div style={{"fontSize":"16px","fontWeight":"600","letterSpacing":"-.3px","color":"var(--ink)","whiteSpace":"nowrap","overflow":"hidden","textOverflow":"ellipsis"}}>
+                    {v.rosRoleDef?.person}
                   </div>
-                  <div style={{"fontSize":"12.5px","color":"var(--faint)","marginTop":"2px","whiteSpace":"nowrap","overflow":"hidden","textOverflow":"ellipsis"}}>
-                    {"Kilbride Group · Owner"}
+                  <div style={{"fontSize":"12px","color":"var(--faint)","marginTop":"2px","whiteSpace":"nowrap","overflow":"hidden","textOverflow":"ellipsis"}}>
+                    {v.rosRoleDef?.title}
                   </div>
                 </div>
               </div>
@@ -143,20 +155,20 @@ export default function AppShell({ v }: Props) {
             </button>
             <div style={css(cat(v.railRowStyle, "margin-top:10px;padding:12px 10px;border-top:1px solid var(--border)"))}>
               <div style={{"width":"40px","height":"40px","flex":"none","borderRadius":"12px","background":"var(--surface-2)","border":"1px solid var(--border)","color":"var(--body)","display":"flex","alignItems":"center","justifyContent":"center","fontSize":"12px","fontWeight":"600","cursor":"pointer"}}>
-                {"MK"}
+                {v.rosRoleDef?.initials}
               </div>
               <span style={css(v.brandStyle)}>
                 <span style={{"display":"block","fontSize":"14px","fontWeight":"500","color":"var(--ink)"}}>
-                  {"Martin Kilbride"}
+                  {v.rosRoleDef?.person}
                 </span>
                 <span style={{"display":"block","marginTop":"2px","fontSize":"12px","color":"var(--faint)"}}>
-                  {"Kilbride Group · Owner"}
+                  {v.rosRoleDef?.title}
                 </span>
               </span>
             </div>
           </>
         )}
-      </nav>
+      </nav>}
       <span style={css(v.hoverLabel?.style)}>
         <span style={{"position":"absolute","left":"-4px","top":"50%","width":"8px","height":"8px","background":"var(--tooltip)","borderLeft":"1px solid var(--border)","borderBottom":"1px solid var(--border)","transform":"translateY(-50%) rotate(45deg)"}} />
         <span style={{"width":"5px","height":"5px","borderRadius":"50%","background":"var(--accent)"}} />
@@ -165,7 +177,7 @@ export default function AppShell({ v }: Props) {
           {txt(v.hoverLabel?.hint)}
         </span>
       </span>
-      <main style={css(cat("--page-dy:", v.pageDy, ";position:relative;z-index:1;flex:1;min-width:0;display:flex;flex-direction:column;margin:16px 16px 16px 0;background:var(--panel,#0f1316);border:1px solid var(--border);border-radius:28px;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.03) inset"))}>
+      <main style={css(cat("--page-dy:", v.pageDy, ";position:relative;z-index:1;flex:1;min-width:0;display:flex;flex-direction:column;margin:", v.narrow ? "0" : "16px 16px 16px 0", ";background:var(--panel,#0f1316);border:1px solid var(--border);border-radius:", v.narrow ? "0" : "28px", ";overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.03) inset"))}>
         {"\n"}
         {txt(v.pageSweepEl)}
         {"\n"}
@@ -176,9 +188,14 @@ export default function AppShell({ v }: Props) {
         )}
         <div style={{"position":"absolute","left":"0","right":"0","bottom":"0","height":"64px","zIndex":"3","pointerEvents":"none","maskImage":"linear-gradient(0deg,#000 0%,transparent 100%)","WebkitMaskImage":"linear-gradient(0deg,#000 0%,transparent 100%)","background":"linear-gradient(0deg,var(--bg) 0%,rgba(0,0,0,0) 100%)","opacity":".85"}} />
         <div style={css(v.headerFieldStyle)} />
-        <header style={{"position":"relative","zIndex":"4","flex":"none","width":"100%","padding":"18px 28px","boxSizing":"border-box","borderBottom":"1px solid var(--border)"}}>
+        <header style={{"position":"relative","zIndex":"4","flex":"none","width":"100%","padding":v.narrow ? "10px 12px" : "16px 28px 12px","boxSizing":"border-box","borderBottom":"1px solid var(--border)"}}>
           <div style={css(v.headerPillStyle)}>
-            {v.isAgents && (
+            {v.narrow && !v.phoneRole && (
+              <button className="ix2 ros-focus" aria-label="Open navigation" onClick={v.toggleMobileRail} style={{"flex":"none","width":"42px","height":"42px","border":"0","borderRadius":"999px","background":"none","color":"var(--ink)","cursor":"pointer","display":"flex","alignItems":"center","justifyContent":"center"}}>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round"><path d="M4 6h16 M4 12h16 M4 18h16" /></svg>
+              </button>
+            )}
+            {v.agentsChat && !v.narrow && (
               <>
                 <div style={{"flex":"0 0 auto","display":"flex","alignItems":"center","gap":"9px","padding":"0 8px 0 5px"}}>
                   <AgentFace shape={v.agent?.shape} state={v.agent?.state} tint={v.agent?.tint} size={"30"} />
@@ -199,7 +216,7 @@ export default function AppShell({ v }: Props) {
                 <div style={{"width":"1px","height":"18px","flex":"none","margin":"0 4px","background":"var(--border)"}} />
               </>
             )}
-            {v.showPillNav && (
+            {v.showPillNav && !v.narrow && (
               <>
                 <div style={css(v.navGroupStyle)}>
                   {v.tabsLoose && (
@@ -311,10 +328,10 @@ export default function AppShell({ v }: Props) {
                         <>
                           <div style={{"minWidth":"0"}}>
                             <div style={{"fontSize":"12px","fontWeight":"500","lineHeight":"1.2","whiteSpace":"nowrap"}}>
-                              {"Martin Kilbride"}
+                              {v.profileName}
                             </div>
                             <div style={{"fontSize":"10.5px","color":"var(--faint)","lineHeight":"1.2"}}>
-                              {"Owner"}
+                              {v.profileTitle}
                             </div>
                           </div>
                         </>
@@ -330,6 +347,16 @@ export default function AppShell({ v }: Props) {
               </svg>
             </button>
           </div>
+          {v.narrow && arr(v.contextNav).length > 0 && (
+            <div className="ros-scroll-x" style={{"display":"flex","gap":"4px","marginTop":"8px","paddingBottom":"2px"}}>
+              {arr(v.contextNav).map((t: any, i: number) => (
+                <button key={i} onClick={t?.go} className="ros-focus" style={{"flex":"none","height":"32px","padding":"0 13px","borderRadius":"999px","border":"1px solid " + (t?.active ? "var(--accent-line)" : "var(--border)"),"background":t?.active ? "var(--accent-soft)" : "var(--surface)","color":t?.active ? "var(--ink)" : "var(--dim)","fontSize":"12.5px","fontWeight":t?.active ? 600 : 500,"whiteSpace":"nowrap","cursor":"pointer"}}>
+                  {t?.label}
+                </button>
+              ))}
+            </div>
+          )}
+          <DemoStrip onAskSunny={v.askSunny} compact={v.narrow} />
         </header>
         {v.showNotifs && (
           <>
@@ -353,7 +380,7 @@ export default function AppShell({ v }: Props) {
                 <div style={{"position":"relative","display":"flex","flexDirection":"column","gap":"7px","maxHeight":"min(58vh,440px)","overflowY":"auto","scrollbarWidth":"none"}}>
                   {arr(v.notifications).map((n: any, i3: number) => (
                     <Fragment key={i3}>
-                      <div className="ix9" style={css(n?.cardStyle)}>
+                      <div className="ix9" onClick={n?.open} style={css(n?.cardStyle)}>
                         <span style={css(n?.washStyle)} />
                         <span style={css(n?.dotStyle)} />
                         <span style={{"position":"relative","flex":"1","minWidth":"0","display":"block"}}>
@@ -386,10 +413,11 @@ export default function AppShell({ v }: Props) {
             </div>
           </>
         )}
-        {v.isDashboard && <DashboardKpiBand v={v} />}
+        {v.isDashboard && <div className="pulse-core"><DashboardKpiBand v={v} /></div>}
         <div data-scroll-main="1" style={{"flex":"1","minHeight":"0","overflowY":"auto","overflowX":"hidden","scrollbarWidth":"none"}}>
           {v.isChat && <Home v={v} />}
-          {v.isWork && <Work v={v} />}
+          {v.rosPage && <RosPage page={v.rosPage} />}
+          {v.isWork && <div className="pulse-core"><Work v={v} /></div>}
           {v.isRecords && <Records v={v} />}
           {v.rec?.isContacts && (
             <>
@@ -471,7 +499,8 @@ export default function AppShell({ v }: Props) {
           )}
           {v.rec?.isFiles && <RecordsFiles v={v} />}
           {v.rec?.isOntology && <RecordsOntology v={v} />}
-          {v.isActivity && <Activity v={v} />}
+          {v.rec?.extraTab && <RecordsExtra tab={v.rec.extraTab} />}
+          {v.isActivity && <div className="pulse-core"><Activity v={v} /></div>}
           {v.act?.detailOpen && (
             <>
               <div onClick={v.act?.closeDetail} style={{"position":"fixed","inset":"0","zIndex":"68","background":"var(--scrim)","backdropFilter":"blur(6px)","display":"flex","justifyContent":"flex-end"}}>
@@ -563,6 +592,11 @@ export default function AppShell({ v }: Props) {
                     <span style={{"flex":"1","minWidth":"0","fontFamily":"var(--mono)","fontSize":"9.5px","color":"var(--faint)","overflow":"hidden","textOverflow":"ellipsis","whiteSpace":"nowrap"}}>
                       {txt(v.act?.detail?.audit)}
                     </span>
+                    {v.act?.detail?.hasLink && (
+                      <button className="ixp" onClick={v.act?.detail?.openLink} style={{"height":"34px","padding":"0 15px","border":"0","borderRadius":"var(--cta-r,9px)","background":"var(--accent-fill,var(--accent))","color":"var(--on-accent)","fontSize":"13px","fontWeight":"500","cursor":"pointer"}}>
+                        {v.act?.detail?.linkLabel}
+                      </button>
+                    )}
                     {v.act?.detail?.canUndo && (
                       <>
                         <button className="ixz" style={{"height":"34px","padding":"0 15px","background":"none","border":"1px solid var(--border)","borderRadius":"var(--r-ctl,9px)","fontSize":"13px","color":"var(--ink)","cursor":"pointer"}}>
@@ -575,9 +609,10 @@ export default function AppShell({ v }: Props) {
               </div>
             </>
           )}
-          {v.isSettings && <Settings v={v} />}
-          {v.isDashboard && <Dashboard v={v} />}
-          {v.isAgents && <Agents v={v} />}
+          {v.isSettings && <div className="pulse-core"><Settings v={v} /></div>}
+          {v.isDashboard && <div className="pulse-core"><Dashboard v={v} /></div>}
+          {v.agentsChat && <Agents v={v} />}
+          {v.isAgents && !v.agentsChat && <AgentsTabs tab={v.agentsTab} />}
         </div>
       </main>
       {v.showFab && (
@@ -719,7 +754,7 @@ export default function AppShell({ v }: Props) {
                     </Fragment>
                   ))}
                 </div>
-                <button className="ix10" style={{"width":"100%","height":"38px","marginTop":"14px","background":"none","border":"1px solid var(--border)","borderRadius":"var(--r-ctl,13px)","fontSize":"12.5px","color":"var(--body)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease)"}}>
+                <button className="ix10" onClick={v.goActivity} style={{"width":"100%","height":"38px","marginTop":"14px","background":"none","border":"1px solid var(--border)","borderRadius":"var(--r-ctl,13px)","fontSize":"12.5px","color":"var(--body)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease)"}}>
                   {"Full audit log"}
                 </button>
               </div>
@@ -820,6 +855,7 @@ export default function AppShell({ v }: Props) {
       {v.newRec?.open && <NewRecordDialog v={v} />}
       {v.paletteOpen && <CommandPalette v={v} />}
       {v.bgGallery?.open && <BackgroundGallery v={v} />}
+      <RosOverlays />
     </div>
     </>
   );

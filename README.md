@@ -1,57 +1,36 @@
-# Pulse — Harbour
+# Ray of Sunshine OS · powered by Pulse
 
-React build of the **Pulse v5 Harbour** design from Claude Design, the operations dashboard mocked up for Kilbride Group.
+Frontend-only demo of an operating system for Ray of Sunshine Morning, After School and Early Years Services (9 locations, 650 children, 480 families, 100 staff). It is built on the Pulse v4 Glass template: Home and its chat, Agents, Work, Records with the Ontology, Activity, Settings and the Dashboard are all kept and re-pointed at childcare data.
 
-Every page, theme and interaction from the design is here. Screens were checked against the original mockup and match pixel for pixel at 1440×900 and 1024×720.
+Everything is simulated. No backend, no authentication, no payments, no messages, no NCS submissions and no API calls. All people are fictional.
 
 ## Run it
 
 ```bash
 npm install
 npm run dev        # http://localhost:5173
-npm run build      # type-check + production build into dist/
+npm run typecheck
+npm run build
 ```
-
-## What's in it
-
-| Area | Where |
-| --- | --- |
-| Pages: Home (Helios chat), Agents, Dashboard, Work, Records, Activity, Settings | `src/views/pages/` |
-| Overlays: ⌘K palette, agent studio, Helios mini chat, work viewer, new record, background gallery | `src/views/overlays/` |
-| App frame: sidebar, top bar, notifications | `src/views/AppShell.tsx` |
-| State and behaviour | `src/logic/PulseLogic.js` |
-| Demo data (Kilbride Group) | `src/logic/data.js` |
-| Agent avatar | `src/components/AgentFace.tsx` |
-| Theme tokens (Harbour, light and 11 more), animations | `src/styles/pulse.css` |
 
 ## How it fits together
 
-- **`PulseLogic`** holds all state. Its `renderVals()` returns one flat object `v`.
-- **Views** are plain React components that render from `v`.
-- **`LogicHost`** (`src/runtime/logic.tsx`) mounts the logic and re-renders on `setState`.
-- **Backgrounds** live in `src/App.tsx`:
-  - `dashboardBackdrop`: the colour of the Dashboard KPI background
-  - `kpiBackdropOn`: whether that background shows
-  - `recordsBackdrop`: the colour of the Records wash (`""` uses the theme gradient)
-- **Customising for a client:** read `CLAUDE.md` first. It lists the layout rules every copy keeps.
+| Area | Where |
+| --- | --- |
+| Pulse shell, rail, header, Home chat, Work, Activity, Records, Settings, Dashboard | `src/logic/PulseLogic.js`, `src/logic/data.js`, `src/views/` |
+| Typed records for every module | `src/ros/types.ts` |
+| Deterministic seed (story fixtures first, then background records) | `src/ros/seed.ts` |
+| Store: seed + replayed action log, role preview, location filter, drawers, toasts | `src/ros/store.ts` |
+| Derived numbers (counts, money, ratios, manifests, NCS) | `src/ros/selectors.ts` |
+| Demo actions (each writes to Activity) | `src/ros/actions.ts` and module files |
+| Shared record drawer (any ID opens here) | `src/ros/records.tsx` |
+| Module screens | `src/ros/modules/` |
+| Navigation map and role access | `src/ros/registry.ts` |
+| Brand accent layer and Sunshine theme | `src/styles/ros.css` |
 
-## Updating from Claude Design
+- The demo clock is frozen at Tuesday 20 October 2026, 08:45. "Advance to afternoon" moves it to 14:45 for the school run.
+- State is the seed plus a log of demo actions, saved to `localStorage`. "Reset demo" clears it; "Undo" removes the last action.
+- Role Preview in the header switches between Owner, Operations, Accounts, NCS, Location Manager, Practitioner, Driver and Parent (MyRosKids).
+- Ratios, fees, subsidy rates and NCS rules are demo configuration, not legal or regulatory determinations.
 
-Export the new version, replace the file in `design/`, then run:
-
-```bash
-npm run import-design
-```
-
-This regenerates:
-
-- `src/views/`
-- `src/styles/pulse.css`
-- `src/styles/interactions.css`
-- `src/logic/`
-
-`AgentFace` is hand-written and left alone. Commit before running, because it overwrites hand edits to those files.
-
-## Fixed from the mockup
-
-In the mockup, the work viewer's wrapper `<div>` was never closed. As a result, the ⌘K palette, agent studio, new record dialog and background gallery could only appear while the work viewer was open. They now open on their own. The fix is applied in `tools/import-design.mjs`.
+Read `CLAUDE.md` before customising further; its layout rules (Home then Agents at the top of the rail, Ontology first in Records, a clean Home centre column) still apply.

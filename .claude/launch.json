@@ -7,6 +7,13 @@
       "runtimeArgs": ["run", "dev", "--", "--port", "5176", "--strictPort"],
       "port": 5176,
       "autoPort": false
+    },
+    {
+      "name": "ros-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "5187", "--strictPort"],
+      "port": 5187,
+      "autoPort": false
     }
   ]
 }

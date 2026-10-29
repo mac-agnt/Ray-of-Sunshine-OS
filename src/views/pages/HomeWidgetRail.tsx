@@ -6,7 +6,7 @@ type Props = { v: any };
 export default function HomeWidgetRail({ v }: Props) {
   return (
     <>
-      <aside style={{"position":"relative","zIndex":"1","width":"352px","flex":"none","minHeight":"0","overflowY":"auto","display":"flex","flexDirection":"column","gap":"14px","padding":"2px 0 6px 20px"}}>
+      <aside style={{"position":"relative","zIndex":"1","width":v.narrow ? "100%" : "352px","flex":"none","minHeight":"0","overflowY":v.narrow ? "visible" : "auto","display":"flex","flexDirection":"column","gap":"14px","padding":v.narrow ? "2px 0 6px" : "2px 0 6px 20px"}}>
         <div style={{"flex":"0 0 auto","minWidth":"0","overflow":"hidden","display":"flex","flexWrap":"nowrap","alignItems":"center","justifyContent":"space-between","gap":"4px","padding":"2px 0 4px","fontFamily":"var(--mono)"}}>
           {arr(v.flipUnits).map((u: any, i15: number) => (
             <Fragment key={i15}>
@@ -96,7 +96,7 @@ export default function HomeWidgetRail({ v }: Props) {
             <div style={{"background":"var(--surface)","border":"1px solid var(--border)","borderRadius":"var(--card-r,18px)","backdropFilter":"blur(20px) saturate(1.3)","boxShadow":"var(--card-shadow)","transition":"transform .28s var(--ease),border-color .24s var(--ease),box-shadow .28s var(--ease)","padding":"20px 22px 10px"}}>
               <div style={{"display":"flex","alignItems":"center","gap":"10px"}}>
                 <div style={{"flex":"1","fontSize":"13.5px","fontWeight":"500"}}>
-                  {"Action inbox"}
+                  {"Morning Brief"}
                 </div>
                 <span style={{"height":"24px","display":"flex","alignItems":"center","padding":"0 10px","background":"var(--surface-2)","border":"1px solid var(--border)","borderRadius":"var(--r-sm,9px)","fontFamily":"var(--mono)","fontSize":"11px","color":"var(--dim)"}}>
                   {txt(v.inboxCount)}
@@ -133,7 +133,7 @@ export default function HomeWidgetRail({ v }: Props) {
                 {v.inboxEmpty && (
                   <>
                     <div style={{"padding":"20px 0 24px","borderTop":"1px solid var(--border)","textAlign":"center","fontSize":"12.5px","color":"var(--dim)"}}>
-                      {"Nothing needs you."}
+                      {"Nothing needs you this morning."}
                     </div>
                   </>
                 )}

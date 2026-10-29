@@ -19,10 +19,10 @@ export default function Settings({ v }: Props) {
             <div style={{"fontSize":"14px","color":"var(--dim)","marginTop":"9px"}}>
               {"How Pulse is set up for "}
               {txt(v.admin?.company)}
-              {" — people, permissions, systems and governance."}
+              {": people, permissions, policies, systems and governance."}
             </div>
           </div>
-          <button className="ix10" style={{"flex":"none","height":"36px","display":"flex","alignItems":"center","gap":"8px","padding":"0 15px","background":"var(--chip)","border":"1px solid var(--chip-border)","borderRadius":"var(--r-ctl,13px)","fontSize":"13px","color":"var(--body)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease)"}}>
+          <button className="ix10" onClick={v.admin?.openHistory} style={{"flex":"none","height":"36px","display":"flex","alignItems":"center","gap":"8px","padding":"0 15px","background":"var(--chip)","border":"1px solid var(--chip-border)","borderRadius":"var(--r-ctl,13px)","fontSize":"13px","color":"var(--body)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease)"}}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z M12 8v4l3 1.8" />
             </svg>
@@ -192,7 +192,7 @@ export default function Settings({ v }: Props) {
                                 ))}
                               </div>
                               <div style={{"display":"flex","alignItems":"center","gap":"10px","marginTop":"14px","paddingTop":"13px","borderTop":"1px solid var(--border)"}}>
-                                <button className="ixz" style={css(it?.actionStyle)}>
+                                <button className="ixz" onClick={it?.run} style={css(it?.actionStyle)}>
                                   {txt(it?.actionLabel)}
                                 </button>
                                 <span style={{"flex":"1","minWidth":"0","fontSize":"11px","color":"var(--faint)","overflow":"hidden","textOverflow":"ellipsis","whiteSpace":"nowrap"}}>
@@ -265,7 +265,7 @@ export default function Settings({ v }: Props) {
                             <div style={{"fontSize":"12px","color":"var(--dim)","lineHeight":"1.5","marginTop":"7px"}}>
                               {txt(is?.fix)}
                             </div>
-                            <button style={{"height":"28px","marginTop":"9px","padding":"0 12px","background":"var(--surface-2)","border":"1px solid var(--border)","borderRadius":"var(--r-ctl,9px)","fontSize":"11.5px","color":"var(--body)","cursor":"pointer"}}>
+                            <button onClick={is?.run} style={{"height":"28px","marginTop":"9px","padding":"0 12px","background":"var(--surface-2)","border":"1px solid var(--border)","borderRadius":"var(--r-ctl,9px)","fontSize":"11.5px","color":"var(--body)","cursor":"pointer"}}>
                               {txt(is?.action)}
                             </button>
                           </div>
@@ -283,7 +283,7 @@ export default function Settings({ v }: Props) {
                       <div style={{"fontSize":"14px","lineHeight":"1.55","color":"var(--ink)","marginTop":"7px"}}>
                         {txt(v.admin?.panel?.heroText)}
                       </div>
-                      <button className="ix15" style={{"height":"34px","marginTop":"13px","padding":"0 15px","border":"1px solid var(--accent)","background":"none","borderRadius":"var(--r-ctl,9px)","fontSize":"13px","color":"var(--accent)","cursor":"pointer","transition":"background .2s var(--ease)"}}>
+                      <button className="ix15" onClick={v.admin?.panel?.heroRun} style={{"height":"34px","marginTop":"13px","padding":"0 15px","border":"1px solid var(--accent)","background":"none","borderRadius":"var(--r-ctl,9px)","fontSize":"13px","color":"var(--accent)","cursor":"pointer","transition":"background .2s var(--ease)"}}>
                         {txt(v.admin?.panel?.heroAction)}
                       </button>
                     </div>

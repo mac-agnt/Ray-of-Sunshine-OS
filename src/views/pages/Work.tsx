@@ -209,11 +209,11 @@ export default function Work({ v }: Props) {
                   </button>
                 </Fragment>
               ))}
-              <button className="ixu" onClick={v.toggleFilterMenu} style={{"height":"32px","display":"flex","alignItems":"center","gap":"7px","padding":"0 13px","background":"none","border":"1px dashed var(--border-strong)","borderRadius":"var(--r-ctl,9px)","fontSize":"12.5px","color":"var(--dim)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease)"}}>
+              <button className="ixu" onClick={v.openPalette} style={{"height":"32px","display":"flex","alignItems":"center","gap":"7px","padding":"0 13px","background":"none","border":"1px dashed var(--border-strong)","borderRadius":"var(--r-ctl,9px)","fontSize":"12.5px","color":"var(--dim)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease)"}}>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <path d="M12 5v14 M5 12h14" />
+                  <path d="m21 21-4.3-4.3 M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0" />
                 </svg>
-                {"Filter"}
+                {"Find a record"}
               </button>
             </div>
           </>

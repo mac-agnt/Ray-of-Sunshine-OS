@@ -28,7 +28,7 @@ export default function NewRecordDialog({ v }: Props) {
             <div style={{"fontFamily":"var(--mono)","fontSize":"9px","letterSpacing":"0.12em","color":"var(--dim)"}}>
               {"RECORD NAME"}
             </div>
-            <input className="ix1g" value={v.newRec?.name ?? ""} onChange={v.newRec?.setName} placeholder="Casey Builders — 2026 framework" style={{"width":"100%","marginTop":"10px","padding":"12px 15px","background":"var(--chip)","border":"1px solid var(--chip-border)","borderRadius":"var(--r-md,12px)","outline":"0","fontSize":"14.5px","color":"var(--ink)","boxShadow":"inset 0 1px 2px rgba(0,0,0,.2)","transition":"border-color .16s var(--ease),box-shadow .16s var(--ease)"}} />
+            <input className="ix1g" value={v.newRec?.name ?? ""} onChange={v.newRec?.setName} placeholder="O'Neill family · settling-in notes" style={{"width":"100%","marginTop":"10px","padding":"12px 15px","background":"var(--chip)","border":"1px solid var(--chip-border)","borderRadius":"var(--r-md,12px)","outline":"0","fontSize":"14.5px","color":"var(--ink)","boxShadow":"inset 0 1px 2px rgba(0,0,0,.2)","transition":"border-color .16s var(--ease),box-shadow .16s var(--ease)"}} />
             <div style={{"fontFamily":"var(--mono)","fontSize":"9px","letterSpacing":"0.12em","color":"var(--dim)","marginTop":"22px"}}>
               {"HOW THE DATA IS DISPLAYED"}
             </div>

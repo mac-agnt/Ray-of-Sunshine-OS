@@ -1,4 +1,5 @@
-/* Demo data and pure helpers for the Pulse prototype (Kilbride Group). */
+/* Static configuration for Ray of Sunshine OS on Pulse: icons, navigation, Records files,
+   settings and agent chat history. Live numbers come from src/ros (the store). */
 
 const INK="var(--ink)", BODY="var(--body)", DIM="var(--dim)", FAINT="var(--faint)";
 const LIME="var(--accent)", GREEN="var(--ok)", AMBER="var(--warn)", RED="var(--bad)", NEUTRAL="var(--neutral)";
@@ -32,88 +33,103 @@ const ICONS = {
   records:"M6.4 3.6h7.4l4.2 4.2v12.6H6.4V3.6Z M13.4 3.8v4.2h4.2 M9 12.4h6 M9 16h4",
   tree:"M4.5 6h5 M4.5 12h5 M4.5 18h5 M12.5 6h7 M12.5 12h7 M12.5 18h7",
   graph:"M7 7.4a2.4 2.4 0 1 0 0-4.8 2.4 2.4 0 0 0 0 4.8Z M17.6 10.4a2.4 2.4 0 1 0 0-4.8 2.4 2.4 0 0 0 0 4.8Z M9.4 21.4a2.4 2.4 0 1 0 0-4.8 2.4 2.4 0 0 0 0 4.8Z M8.6 6.4l7.6 2.6 M15.8 11.4l-5.6 5.2",
-  bell:"M6 8.5a6 6 0 0 1 12 0c0 6.5 2.6 8.5 2.6 8.5H3.4S6 15 6 8.5Z M10.3 20.5a1.94 1.94 0 0 0 3.4 0"
+  bell:"M6 8.5a6 6 0 0 1 12 0c0 6.5 2.6 8.5 2.6 8.5H3.4S6 15 6 8.5Z M10.3 20.5a1.94 1.94 0 0 0 3.4 0",
+  bus:"M6.5 4h11A2.5 2.5 0 0 1 20 6.5V16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6.5A2.5 2.5 0 0 1 6.5 4Z M4 11h16 M7.5 17v2 M16.5 17v2 M7.5 14h.01 M16.5 14h.01",
+  sprout:"M12 20v-8 M12 12c0-3.6-2.6-6.2-6.6-6.2 0 3.8 2.6 6.2 6.6 6.2Z M12 12.5c0-3 2.2-5.3 5.8-5.3 0 3.2-2.2 5.3-5.8 5.3Z M7 20h10",
+  tent:"M12 4 3.5 19.5h17L12 4Z M12 4v15.5 M9 19.5l3-5.5 3 5.5",
+  enrol:"M9 11.5a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8Z M3 20c.8-3 3.1-4.7 6-4.7 1.4 0 2.6.4 3.6 1 M18 13v6 M15 16h6",
+  cert:"M6 3.5h12v11H6z M9 7.5h6 M9 10.5h4 M10 14.5l-1.5 6 3.5-2 3.5 2-1.5-6",
+  staff:"M8.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z M16.5 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z M3 19.5c.6-2.8 2.8-4.4 5.5-4.4s4.9 1.6 5.5 4.4 M14.5 15.3c2.6.2 4.4 1.7 5 4.2",
+  shield:"M12 3.6 19.5 6v6.1c0 4-3.1 6.9-7.5 8.3-4.4-1.4-7.5-4.3-7.5-8.3V6L12 3.6Z M12 9v4 M12 15.6h.01",
+  reports:"M5 20V10 M10 20V4 M15 20v-7 M20 20V8 M3.5 20h17",
+  heart:"M12 19.5s-7.5-4.4-7.5-9.6A4.1 4.1 0 0 1 12 7.6a4.1 4.1 0 0 1 7.5 2.3c0 5.2-7.5 9.6-7.5 9.6Z"
 };
 
 /* Ontology stays first and is never removed (PulseLogic enforces this too). */
 const REC_SECTIONS = [
-  {id:"ontology", label:"Ontology", blurb:"How every record connects: entities, predicates and the paths between them."},
-  {id:"files", label:"Files", blurb:"Documents, contracts and certificates — indexed where Helios can read them."},
-  {id:"contacts", label:"Contacts", blurb:"Every person the business deals with, staff and external."}
+  {id:"ontology", label:"Ontology", blurb:"How every record connects: families, children, bookings, money, NCS and staff."},
+  {id:"files", label:"Files", blurb:"Policies, fee terms, NCS letters and certificates, indexed where Pulse can read them."},
+  {id:"contacts", label:"Contacts", blurb:"Staff, guardians and partners the business deals with."},
+  {id:"explorer", label:"Record Explorer", blurb:"Search any record and walk its relationships."},
+  {id:"entities", label:"Entity Types", blurb:"The childcare ontology: every entity, its fields and links."},
+  {id:"history", label:"Linked History", blurb:"Everything that touched a record, in order."}
 ];
 
 const CONTACTS = [
-  ["Aoife Nolan","Accounts manager","aoife@kilbridegroup.ie","Kilbride Group","staff","var(--accent)"],
-  ["Séamus Byrne","Senior installer","seamus@kilbridegroup.ie","Kilbride Group","staff","#9fd6f0"],
-  ["Tom Walsh","Operations lead","tom@kilbridegroup.ie","Kilbride Group","staff","#e6c78a"],
-  ["Niamh Cronin","Trade counter","niamh@kilbridegroup.ie","Kilbride Group","staff","#c8b4f0"],
-  ["Dermot Casey","Buyer","dermot@caseybuilders.ie","Casey Builders","customer","#9fd6f0"],
-  ["Liam Dunne","Owner","liam@dunneandsons.ie","Dunne & Sons Ltd","on stop","#e2a08c"],
-  ["Máire Fitzgerald","Director","maire@fitzheating.ie","Fitzgerald Heating","watch","#e6c78a"],
-  ["Paul Ó Riain","Site foreman","paul@oriain.ie","Ó Riain, Glanmire","customer","#a8e0c0"],
-  ["Cathal Moore","Account manager","cathal@munsterplumbing.ie","Munster Plumbing","supplier","#c8b4f0"]
+  ["Amanda Spiteri","Owner","amanda.spiteri@demo.roskids.example","Ray of Sunshine · Hazelbrook","staff","var(--accent)"],
+  ["Deirdre Kinsella","Operations Manager","deirdre.kinsella@demo.roskids.example","Ray of Sunshine · all sites","staff","#9fd6f0"],
+  ["Gráinne Whelan","Accounts","grainne.whelan@demo.roskids.example","Ray of Sunshine · Accounts","staff","#e6c78a"],
+  ["Lorraine Tobin","NCS Administrator","lorraine.tobin@demo.roskids.example","Ray of Sunshine · NCS","staff","#c8b4f0"],
+  ["Joanne Redmond","Location Manager","joanne.redmond@demo.roskids.example","Arklow Rocks","staff","#a8e0c0"],
+  ["Tara Breen","Location Manager","tara.breen@demo.roskids.example","Gorey","staff","#9fd6f0"],
+  ["Gerry Doran","Driver · WKR-02","gerry.doran@demo.roskids.example","Hazelbrook transport","staff","#e6c78a"],
+  ["Sinéad O'Neill","Parent · ROS1042","sinead.oneill@parents.demo.roskids.example","O'Neill family","parent","#9fd6f0"],
+  ["Emer Nolan","Parent · ROS1132","emer.nolan@parents.demo.roskids.example","Nolan family","parent","#a8e0c0"],
+  ["Rachel Kelly","Parent · ROS1087","rachel.kelly@parents.demo.roskids.example","Kelly family","NCS","#c8b4f0"],
+  ["Lisa Byrne","Parent · ROS1096","lisa.byrne@parents.demo.roskids.example","Byrne family","payment plan","#e6c78a"],
+  ["Stephen Doyle","Parent · ROS1198","stephen.doyle@parents.demo.roskids.example","Doyle family","blocked","#e2a08c"],
+  ["Training enquiries","Corporate client","training@wicklowpackaging.demo.example","Wicklow Packaging Ltd","course","#c8b4f0"]
 ];
 
 const FILE_TREE = [
-  {type:"folder", id:"f-org", name:"Organisations", depth:0},
-  {type:"file", id:"fl-1", name:"Casey Builders — framework 2026.pdf", depth:1, parent:"f-org", indexed:true,
-   path:"Organisations / Casey Builders", title:"Casey Builders — framework 2026",
-   facts:[["TYPE","PDF · 6 pages"],["ADDED","12 Jan 2026"],["INDEXED","All 6 pages"],["OWNER","Aoife Nolan"]],
-   body:["The framework sets the discount tiers for 2026 and the payment terms Casey Builders trade on. Tier two applies from €40k of annual spend, which they passed in August.",
-     "Pricing is fixed to the June supplier agreement, so a change on the Munster side flows through here rather than being renegotiated separately.",
-     "Termination requires sixty days' notice on either side. Nothing in the document blocks putting the account on stop for non-payment."],
-   links:[["Casey Builders","org"],["Dermot Casey","person"],["PO-4471","order"]]},
-  {type:"file", id:"fl-2", name:"Dunne & Sons — credit application.pdf", depth:1, parent:"f-org", indexed:true,
-   path:"Organisations / Dunne & Sons Ltd", title:"Dunne & Sons — credit application",
-   facts:[["TYPE","PDF · 4 pages"],["ADDED","3 Mar 2011"],["INDEXED","All 4 pages"],["OWNER","Aoife Nolan"]],
-   body:["The original 2011 application, signed by Liam Dunne, setting a €20,000 limit against thirty-day terms.",
-     "Days-to-pay ran at twelve for most of that period and moved to seventy-four after May 2026, which is what put the account on stop.",
-     "The personal guarantee in section four is still in force and has never been called on."],
-   links:[["Dunne & Sons Ltd","org"],["Liam Dunne","person"],["INV-10428","invoice"]]},
-  {type:"folder", id:"f-cert", name:"Certificates", depth:0},
-  {type:"file", id:"fl-3", name:"Séamus Byrne — gas safe 2026.pdf", depth:1, parent:"f-cert", indexed:true,
-   path:"Certificates / Installers", title:"Séamus Byrne — gas safe 2026",
-   facts:[["TYPE","PDF · 2 pages"],["EXPIRES","14 Nov 2026"],["INDEXED","Both pages"],["OWNER","Operations"]],
-   body:["Registration covers domestic boilers and commercial water heaters, valid to 14 November 2026.",
-     "The renewal reminder fires sixty days before expiry. That routine failed twice this week because Mallow yard has no contact on file."],
-   links:[["Séamus Byrne","person"],["Certificate renewal reminder","workflow"]]},
-  {type:"file", id:"fl-4", name:"Public liability — 2026.pdf", depth:1, parent:"f-cert", indexed:false,
-   path:"Certificates / Insurance", title:"Public liability — 2026",
-   facts:[["TYPE","PDF · 12 pages"],["EXPIRES","1 Apr 2027"],["INDEXED","Not indexed"],["OWNER","Operations"]],
-   body:["Cover to €6.5m across all three locations. Not indexed, so Helios cannot answer questions from it yet.",
-     "Indexing it would let the site-visits module check cover before a job is booked at a new address."],
-   links:[["Head office","location"],["Ballincollig depot","location"]]},
+  {type:"folder", id:"f-pol", name:"Policies", depth:0},
+  {type:"file", id:"fl-1", name:"Fees and Payment Terms 2026-27.pdf", depth:1, parent:"f-pol", indexed:true,
+   path:"Policies / Fees", title:"Fees and Payment Terms 2026/27",
+   facts:[["TYPE","PDF · 6 pages"],["UPDATED","25 Aug 2026"],["INDEXED","All 6 pages"],["OWNER","Gráinne Whelan"]],
+   body:["Fees are due on receipt. Bookings are made weekly inside the booking window; once a week is locked, cancellations are not refunded.",
+     "Late booking and change requests need at least 24 hours' notice on a weekday and are subject to space and staffing. Part hours are billed to the next full hour.",
+     "Leaving the service needs two months' written notice. Payment plans can be revised at most three times. These are Ray of Sunshine operating policies, not statutory rules."],
+   links:[["Billing & Collections","area"],["Gráinne Whelan","person"],["INV-20418","invoice"]]},
+  {type:"file", id:"fl-2", name:"Child Safeguarding Statement v7.2.pdf", depth:1, parent:"f-pol", indexed:true,
+   path:"Policies / Safeguarding", title:"Child Safeguarding Statement v7.2",
+   facts:[["TYPE","PDF · 11 pages"],["UPDATED","1 Sep 2026"],["ACKNOWLEDGED","97 of 100 staff"],["OWNER","Orla Dempsey"]],
+   body:["Names the designated liaison persons for each site and the reporting route for a concern.",
+     "Three staff have not yet acknowledged this version; the Compliance agent has a reminder queued for them."],
+   links:[["Compliance & Safeguarding","area"],["Orla Dempsey","person"]]},
+  {type:"folder", id:"f-ncs", name:"NCS and funding", depth:0},
+  {type:"file", id:"fl-3", name:"NCS claim acceptance guide for parents.pdf", depth:1, parent:"f-ncs", indexed:true,
+   path:"NCS / Parent guides", title:"Accepting an NCS claim",
+   facts:[["TYPE","PDF · 2 pages"],["UPDATED","2 Sep 2026"],["INDEXED","Both pages"],["OWNER","Lorraine Tobin"]],
+   body:["Step-by-step guide sent with claim reminders on Days 2, 4 and 6 of the seven-day acceptance window.",
+     "Linked to claim NCS-0091 for the Kelly family, which lapses today at 17:00."],
+   links:[["NCS-0091","claim"],["Kelly family","family"]]},
+  {type:"file", id:"fl-4", name:"Award letters (masked).zip", depth:1, parent:"f-ncs", indexed:false,
+   path:"NCS / Award letters", title:"Award letters (masked)",
+   facts:[["TYPE","ZIP · 412 letters"],["UPDATED","19 Oct 2026"],["INDEXED","Not indexed"],["OWNER","NCS team"]],
+   body:["CHICK references are masked in every view. Letters are stored but not indexed, so agents read award data from the NCS register instead."],
+   links:[["NCS & Funding","area"]]},
+  {type:"folder", id:"f-hr", name:"Staff certificates", depth:0},
+  {type:"file", id:"fl-5", name:"Garda vetting register.xlsx", depth:1, parent:"f-hr", indexed:true,
+   path:"HR / Vetting", title:"Garda vetting register",
+   facts:[["TYPE","XLSX · 100 rows"],["UPDATED","20 Oct 2026"],["INDEXED","Yes"],["OWNER","Orla Dempsey"]],
+   body:["One vetting has lapsed (Shane Molloy, Brookfield, 2 Oct) and he is blocked from the rota until renewed.",
+     "Five other certificates fall due in the next 30 days across first aid, Children First and manual handling."],
+   links:[["Shane Molloy","person"],["Staff & HR","area"]]},
   {type:"folder", id:"f-fin", name:"Finance", depth:0},
-  {type:"file", id:"fl-5", name:"INV-10428.pdf", depth:1, parent:"f-fin", indexed:true,
-   path:"Finance / Invoices", title:"INV-10428",
-   facts:[["TYPE","PDF · 1 page"],["VALUE","€28,410"],["AGE","74 days"],["OWNER","Aoife Nolan"]],
-   body:["The oldest unpaid invoice on the ledger and the reason Dunne & Sons is on stop.",
-     "Two reminders have gone out. The third is drafted and waiting on the finance manager inside the chase workflow."],
-   links:[["Dunne & Sons Ltd","org"],["Chase unpaid invoices","workflow"]]},
-  {type:"file", id:"fl-6", name:"Month-end close — August.xlsx", depth:1, parent:"f-fin", indexed:false,
-   path:"Finance / Close", title:"Month-end close — August",
-   facts:[["TYPE","XLSX · 9 sheets"],["ADDED","1 Sep 2026"],["INDEXED","Not indexed"],["OWNER","Aoife Nolan"]],
-   body:["The working file behind the August close. Cash collected came in at €368k against €358k in July.",
-     "Spreadsheets are stored but not indexed by default — the numbers Helios quotes come from the ledger, not from here."],
-   links:[["Finance","area"],["Month-end close","workflow"]]}
+  {type:"file", id:"fl-6", name:"INV-20418.pdf", depth:1, parent:"f-fin", indexed:true,
+   path:"Finance / Invoices", title:"INV-20418 (Nolan, w/c 19 Oct)",
+   facts:[["TYPE","PDF · 1 page"],["VALUE","Live from billing"],["DUE","Direct debit Fri 23 Oct"],["OWNER","Accounts"]],
+   body:["Finn Nolan's week: four After School sessions with the St Patrick's NS collection, less NCS subsidy.",
+     "If late booking LBR-006 is approved, the Friday session, late booking fee and school run are added here as itemised lines."],
+   links:[["Nolan family","family"],["LBR-006","request"]]}
 ];
 
 const ONTO_NODES = [
-  ["Organisation","entity",500,300,1,"Customers and suppliers. Balances arrive from the ledger through the record spine."],
-  ["Person","entity",300,190,1,"One entity for staff and external contacts, scoped by role rather than split in two."],
-  ["Location","entity",700,190,1,"Multi-branch as a business concept: locations plus the location permission scope."],
-  ["Team","entity",250,430,1,"Teams are records, so the team scope on a grant resolves against them."],
-  ["Task","entity",690,430,1,"Work, whatever it is attached to. Queues are one permission-filtered query."],
-  ["Approval","entity",850,320,0,"A request and its steps. Each decision is written as the person who made it."],
-  ["Invoice","ledger",390,95,0,"Read through the spine — the wholesale ledger stays the source of truth."],
-  ["Order","ledger",620,95,0,"Purchase and sales orders, linked to the organisation that raised them."],
-  ["Visit","module",860,470,0,"Contributed by site-visits, with its own table, predicate and tools."],
-  ["File","entity",140,300,0,"Documents against any record. Indexed pages are what Helios can read."],
-  ["works at","predicate",395,240,0,"Person → Organisation."],
-  ["located at","predicate",605,240,0,"Organisation → Location."],
-  ["member of","predicate",360,370,0,"Person → Team."],
-  ["relates to","predicate",600,370,0,"Task → anything."],
-  ["attached to","predicate",140,372,0,"File → anything."]
+  ["Family","entity",500,300,1,"A household with a ROS Parent ID. Guardians, children, bookings and invoices hang off it."],
+  ["Child","entity",300,190,1,"One child file: room or school, collectors, consents and medical flags (role-restricted)."],
+  ["Location","entity",700,190,1,"Nine sites. Rooms, staff, routes and schools are scoped to a location."],
+  ["Staff","entity",250,430,1,"Practitioners, managers, drivers and admin, with certificates that gate the rota."],
+  ["Booking","entity",690,430,1,"A session for a child on a day. Registers, manifests and invoice lines derive from it."],
+  ["NCS award","entity",850,320,0,"Agreed hours, masked CHICK and a demo subsidy rate. Claims follow from it."],
+  ["Invoice","ledger",390,95,0,"Weekly, generated when the booking window closes. NCS subsidy shown as its own line."],
+  ["Payment","ledger",620,95,0,"Card, SEPA or transfer (simulated). Plans allocate oldest invoice first."],
+  ["Route","module",860,470,0,"School runs: stops, vehicle, driver. The manifest is built from bookings."],
+  ["Incident","entity",140,300,0,"Accidents and incidents with parent signature and manager review."],
+  ["has child","predicate",395,240,0,"Family → Child."],
+  ["attends","predicate",605,240,0,"Child → Location."],
+  ["rostered at","predicate",360,370,0,"Staff → Location."],
+  ["booked for","predicate",600,370,0,"Booking → Child."],
+  ["involves","predicate",140,372,0,"Incident → Child."]
 ];
 
 const ONTO_EDGES = [
@@ -154,12 +170,12 @@ const REC_TEMPLATE_CATS = ["All","Records","Case work","Finance","Notes","Ops"];
 /* ---- admin hub ---- */
 /* ---- admin hub: 13 settings areas in five groups ---- */
 const PEOPLE = [
-  ["Aoife Nolan","Accounts manager","aoife@kilbridegroup.ie","Head office","active","Admin","2 min ago"],
-  ["Séamus Byrne","Senior installer","seamus@kilbridegroup.ie","Ballincollig","active","Standard","1 h ago"],
-  ["Tom Walsh","Operations lead","tom@kilbridegroup.ie","Head office","active","Manager","34 min ago"],
-  ["Niamh Cronin","Trade counter","niamh@kilbridegroup.ie","Ballincollig","active","Standard","3 h ago"],
-  ["Dermot Casey","Buyer · Casey Builders","dermot@caseybuilders.ie","—","external","External","2 days ago"],
-  ["Liam Dunne","Owner · Dunne & Sons","liam@dunneandsons.ie","—","inactive","External","19 days ago"]
+  ["Amanda Spiteri","Owner","amanda.spiteri@demo.roskids.example","Hazelbrook (HQ)","active","Admin","Now"],
+  ["Deirdre Kinsella","Operations Manager","deirdre.kinsella@demo.roskids.example","All locations","active","Manager","8 min ago"],
+  ["Gráinne Whelan","Accounts","grainne.whelan@demo.roskids.example","Hazelbrook (HQ)","active","Manager","12 min ago"],
+  ["Lorraine Tobin","NCS Administrator","lorraine.tobin@demo.roskids.example","Hazelbrook (HQ)","active","Standard","20 min ago"],
+  ["Joanne Redmond","Location Manager","joanne.redmond@demo.roskids.example","Arklow Rocks","active","Manager","34 min ago"],
+  ["Shane Molloy","SAC Practitioner","shane.molloy@demo.roskids.example","Brookfield","inactive","Standard","Blocked: vetting lapsed"]
 ];
 const ROLE_LEVELS = ["Admin","Manager","Standard","External"];
 const PERM_KEYS = [["view","View records"],["edit","Edit records"],["approve","Approve payments"]];
@@ -177,27 +193,36 @@ const ROLE_SCOPES = ["All records","Their location","Assigned only"];
 const DEFAULT_PERMS = {Admin:{view:true,edit:true,approve:true}, Manager:{view:true,edit:true,approve:true},
   Standard:{view:true,edit:true,approve:false}, External:{view:true,edit:false,approve:false}};
 const INTEGRATIONS = [
-  {name:"Gmail", blurb:"Mail in and out of Pulse — threads attach to the record they mention, and drafts wait for your yes.", tint:"#ea4335", status:"connected", statusKind:"ok",
+  {name:"MyRosKids parent app", blurb:"Existing parent app for bookings and receipts. In the demo, the reimagined portal is previewed through Role Preview; no live sync.", tint:"#1B75BB", status:"existing system", statusKind:"ok",
+   glyph:"M7 3.5h10a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5Z M10.5 17.5h3",
+   lastSync:"Demo only · not connected", usage:"480 families", auth:"—", scopes:["Read (proposed)"]},
+  {name:"Website form and Gmail queues", blurb:"Current contact form and the General, Accounts, NCS and regional inboxes. Shown here as the unified inbox (simulated).", tint:"#ea4335", status:"existing system", statusKind:"ok",
    glyph:"M4 7.2 12 13 20 7.2 M4 7.2v10.6h16V7.2 M4 7.2 8.5 4h7L20 7.2",
-   lastSync:"2 min ago", usage:"340 emails/day", auth:"OAuth 2.0", scopes:["Read","Send"]},
-  {name:"Xero", blurb:"Invoices, payments and credit notes sync both ways, so the ledger and the record spine never drift.", tint:"#13b5ea", status:"disconnected", statusKind:"bad",
-   glyph:"M4.5 12a7.5 7.5 0 0 1 12.8-5.3 M19.5 12a7.5 7.5 0 0 1-12.8 5.3 M17.3 4v3.3h-3.3 M6.7 20v-3.3H10",
-   lastSync:"27 Feb — token expired", usage:"148 invoices queued", auth:"OAuth 2.0", scopes:["Read","Write"]},
-  {name:"Sage", blurb:"Nightly read of the chart of accounts and balances, mapped onto Pulse organisations.", tint:"#00d639", status:"read only", statusKind:"warn",
-   glyph:"M4 8 12 4.5 20 8 12 11.5 4 8Z M4 13 12 16.5 20 13 M4 18 12 21.5 20 18",
-   lastSync:"14 min ago", usage:"9 accounts synced nightly", auth:"API key", scopes:["Read"]},
-  {name:"HubSpot", blurb:"Contacts, companies and deals stay matched to Pulse records without a second address book.", tint:"#ff7a59", status:"connected", statusKind:"ok",
-   glyph:"M12 9.6a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8Z M12 4v3.4 M12 16.6V20 M4 12h3.4 M16.6 12H20 M6.5 6.5l2.4 2.4 M15.1 15.1l2.4 2.4 M17.5 6.5l-2.4 2.4 M8.9 15.1l-2.4 2.4",
-   lastSync:"6 min ago", usage:"1.1k contacts synced", auth:"OAuth 2.0", scopes:["Read","Write"]},
-  {name:"WhatsApp Business", blurb:"Send updates and chase messages from the record, logged against it as they go.", tint:"#25d366", status:"write only", statusKind:"warn",
-   glyph:"M4 19.5 5.3 15A7.7 7.7 0 1 1 8.6 18.2L4 19.5Z M8.6 10.3c0 3 2.4 5.4 5.4 5.4",
-   lastSync:"11 min ago", usage:"62 messages/day", auth:"API key", scopes:["Send"]},
-  {name:"Resend", blurb:"Transactional email for everything Pulse generates — reminders, briefings and receipts.", tint:"var(--accent)", status:"write only", statusKind:"warn",
-   glyph:"M3.5 12 20.5 4 16 20l-3.4-6.6L3.5 12Z",
-   lastSync:"38 min ago", usage:"210 emails/day", auth:"API key", scopes:["Send"]},
-  {name:"Composio", blurb:"One connector for the long tail of tools, so a new system does not need a new build.", tint:DIM, status:"not connected", statusKind:"off",
-   glyph:"M9 3v5 M15 3v5 M6 8h12v3.5a6 6 0 0 1-12 0V8Z M12 17.5V21",
-   lastSync:"—", usage:"—", auth:"—", scopes:[]}
+   lastSync:"Demo only · sample messages", usage:"7 queues", auth:"—", scopes:["Read (proposed)","Draft"]},
+  {name:"Stripe", blurb:"Card on file, Apple Pay and Google Pay for weekly invoices. Proposed connection; every payment in the demo is simulated.", tint:"#635bff", status:"proposed connection", statusKind:"warn",
+   glyph:"M4 7h16v10H4z M4 10.5h16",
+   lastSync:"—", usage:"Not connected", auth:"Proposed", scopes:[]},
+  {name:"SEPA direct debit", blurb:"Mandates and collections with return codes for failed debits and Day 2 / Day 5 retries. Proposed connection.", tint:"#0F5A94", status:"proposed connection", statusKind:"warn",
+   glyph:"M4 9.5 12 5l8 4.5 M5.5 10v7 M9.5 10v7 M14.5 10v7 M18.5 10v7 M4 19h16",
+   lastSync:"—", usage:"Not connected", auth:"Proposed", scopes:[]},
+  {name:"Bank statement feed", blurb:"Daily statement lines for reconciliation suggestions. The demo uses six sample lines.", tint:"#53948D", status:"demo only", statusKind:"warn",
+   glyph:"M4 6h16 M4 12h16 M4 18h10",
+   lastSync:"Sample feed 06:30", usage:"6 lines today", auth:"—", scopes:["Read (demo)"]},
+  {name:"Twilio SMS", blurb:"SMS reminders for booking windows, claims and pickups. Proposed; no message leaves the demo.", tint:"#f22f46", status:"proposed connection", statusKind:"warn",
+   glyph:"M4 5.5h16v10H8l-4 3v-13Z",
+   lastSync:"—", usage:"Not connected", auth:"Proposed", scopes:[]},
+  {name:"WhatsApp Business", blurb:"Optional channel for parent broadcasts. Proposed connection.", tint:"#25d366", status:"proposed connection", statusKind:"warn",
+   glyph:"M4 19.5 5.3 15A7.7 7.7 0 1 1 8.6 18.2L4 19.5Z",
+   lastSync:"—", usage:"Not connected", auth:"Proposed", scopes:[]},
+  {name:"Google Calendar", blurb:"Visits, training courses and camp dates on staff calendars. Proposed connection.", tint:"#4285f4", status:"proposed connection", statusKind:"warn",
+   glyph:"M8 4v3 M16 4v3 M4.5 9.5h15 M6.4 6h11.2A1.9 1.9 0 0 1 19.5 8v10a1.9 1.9 0 0 1-1.9 1.9H6.4A1.9 1.9 0 0 1 4.5 18V8A1.9 1.9 0 0 1 6.4 6Z",
+   lastSync:"—", usage:"Not connected", auth:"Proposed", scopes:[]},
+  {name:"NCS / Pobal / Early Years Hive export", blurb:"Prepared return files for review. Nothing is ever submitted from the demo.", tint:"#8DB35E", status:"demo only", statusKind:"warn",
+   glyph:"M12 4v10 M8 10l4 4 4-4 M5 19h14",
+   lastSync:"Prepared, not submitted", usage:"Export preview", auth:"—", scopes:["Prepare"]},
+  {name:"Xero / Sage CSV", blurb:"Month-end CSV for the accountants. Proposed; the demo downloads local CSV only.", tint:"#13b5ea", status:"proposed connection", statusKind:"off",
+   glyph:"M4.5 12a7.5 7.5 0 0 1 12.8-5.3 M19.5 12a7.5 7.5 0 0 1-12.8 5.3",
+   lastSync:"—", usage:"CSV export", auth:"—", scopes:[]}
 ];
 
 /* Background catalogue. Each entry is pure CSS so a tile is the real thing at
@@ -248,6 +273,7 @@ const BG_DEFS = [
 ];
 
 const THEMES = [
+  {id:"sunshine", label:"Sunshine", group:"Dark", bg:"#070b1d", surface:"#10172f", ink:"#f4f6fb", accent:"#FFF100"},
   {id:"dark", label:"Dark", group:"Dark", bg:"#0b0c0b", surface:"#1a1c19", ink:"#f2f3ef", accent:"#c8f04b"},
   {id:"indigo", label:"Indigo", group:"Dark", bg:"#0a0b13", surface:"#1a1b26", ink:"#f0f1fa", accent:"#8b93ff"},
   {id:"slate", label:"Slate", group:"Dark", bg:"#100e0c", surface:"#211c17", ink:"#f4f0ea", accent:"#e8a14a"},
@@ -257,7 +283,7 @@ const THEMES = [
   {id:"cargo", label:"Cargo", group:"Dark", bg:"#0a0a0a", surface:"#1a1c1a", ink:"#f2f5f2", accent:"#4ade80"},
   {id:"ocean", label:"Ocean", group:"Dark", bg:"#080e12", surface:"#141f25", ink:"#eaf4f8", accent:"#4fd4d0"},
   {id:"graphite", label:"Graphite", group:"Dark", bg:"#111112", surface:"#212124", ink:"#f4f4f5", accent:"#f4f4f5"},
-  {id:"light", label:"Cream", group:"Light", bg:"#f4f2ed", surface:"#ffffff", ink:"#16181c", accent:"#0071e3"},
+  {id:"light", label:"Daylight", group:"Light", bg:"#F4F6FB", surface:"#ffffff", ink:"#0E1440", accent:"#1B75BB"},
   {id:"warm", label:"Warm paper", group:"Light", bg:"#faf5ec", surface:"#fffdf9", ink:"#2a2016", accent:"#c9683f"},
   {id:"mist", label:"Mist", group:"Light", bg:"#eef1f4", surface:"#ffffff", ink:"#141e20", accent:"#0e9f6e"},
   {id:"sand", label:"Sand", group:"Light", bg:"#f6f1e6", surface:"#fffdf7", ink:"#221d12", accent:"#7d5fd6"}
@@ -281,264 +307,154 @@ const ADMIN_ICONS = {
 };
 
 const ADMIN_CARDS = [
+  {id:"org", group:"ORGANISATION", title:"Organisation", icon:"structure", tint:"var(--accent)",
+   blurb:"Ray of Sunshine Morning, After School and Early Years Services.",
+   tags:["Founded 2015","9 locations","~100 staff"],
+   listLabel:"ORGANISATION DETAILS",
+   rows:[["Legal and trading name","Ray of Sunshine Morning, After School and Early Years Services"],["Product","Ray of Sunshine OS, powered by Pulse"],
+     ["Founder and owner","Amanda Spiteri"],["Founded","2015, Wicklow Town"],["Head office","Hazelbrook Rise, Rathnew, Co. Wicklow, A67 HX39"],
+     ["Admin hours","Monday to Friday, 08:30 to 16:00"],["Services","Early Years · Morning and After School · Transport · Camps · Training"],["Currency and timezone","EUR · Europe/Dublin"]]},
   {id:"people", group:"ORGANISATION", title:"People & access", icon:"people", tint:"#6ad0f0",
-   blurb:"Invite, suspend and offboard the people who use Pulse.",
-   tags:["48 people","6 teams","3 locations"], badge:"3 waiting", badgeKind:"warn",
-   footer:"Last login checked 4 minutes ago", action:"Review 3 invites",
+   blurb:"Invite, suspend and offboard the people who use the OS.",
+   tags:["100 staff","9 locations","1 blocked"], badge:"1 vetting lapsed", badgeKind:"bad",
+   footer:"Shane Molloy blocked from the rota until Garda vetting is renewed", action:"Review access",
    listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Add, invite or remove employees","",""],["Create teams and departments","6 teams"],["Assign managers","4 reporting lines"],
-     ["Set locations","Head office · Ballincollig · Mallow"],["Suspend accounts","2 suspended"],["View last login","48 people tracked"]]},
-  {id:"teams", group:"ORGANISATION", title:"Roles & permissions", icon:"shield", tint:"var(--accent)",
-   blurb:"Permission templates, and exactly what each person can reach.",
-   tags:["4 roles","64 permissions","3 scopes"],
-   heroLabel:"THE QUESTION THIS ANSWERS", heroAction:"Show me what someone can access",
-   heroText:"Pick a person and see every record, action and export they can reach — resolved through their grants, not guessed from the menus.",
-   footer:"Preview Pulse as another user", action:"Open preview",
-   listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Create permission templates","4 in use"],["View, edit, export and delete access","per permission"],
-     ["Restrict by team, location or record owner","3 scopes"],["Set approval limits","€10,000 threshold"],["Preview Pulse as another user",""]]},
-  {id:"structure", group:"ORGANISATION", title:"Company structure", icon:"structure", tint:"#f0c04b",
-   blurb:"Who reports to whom, where they work and when.",
-   tags:["3 locations","Europe/Dublin","EUR"],
-   listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Company details","Kilbride Group"],["Departments","5"],["Teams","6"],["Locations","3"],
-     ["Reporting lines","4"],["Working hours","08:00–17:30, Mon–Fri"],["Holidays","Irish public holidays"],
-     ["Default currency and timezone","EUR · Europe/Dublin"]]},
-
-  {id:"agents", group:"CONTROL", title:"Agents & AI controls", icon:"agent", tint:"var(--accent)",
-   blurb:"What agents may read, what they may do, and where they must stop.",
-   tags:["7 agents","318 actions today","€0.62 spent"],
+   rows:[["Add, invite or remove staff",""],["Assign location managers","9 sites"],["Suspend accounts","1 suspended"],["View last login","100 people tracked"]]},
+  {id:"locs", group:"LOCATIONS", title:"Locations & services", icon:"structure", tint:"#f0c04b",
+   blurb:"Which services run where, rooms, capacity and collection schools.",
+   tags:["9 sites","5 rooms","35 schools"],
+   listLabel:"SITES",
+   rows:[["Hazelbrook (HQ), Rathnew","Early Years · SAC · admin · training"],["Brookfield, Wicklow","SAC"],["Arklow Crèche","Early Years · SAC"],["Arklow Rocks","SAC"],
+     ["Burkeen Dales, Arklow","SAC"],["Gorey, Wexford","SAC · camps"],["Canovee, Cork","SAC · camps"],["Dungarvan, Waterford","SAC"],["Ballymun, Dublin","SAC"]]},
+  {id:"windows", group:"LOCATIONS", title:"Booking windows", icon:"flow", tint:"#9d8cf5",
+   blurb:"When parents can book, when the week locks and what happens on close.",
+   tags:["Opens Mon 09:00","Closes Thu 18:00"],
+   listLabel:"RULES (DEMO CONFIGURATION)",
+   rows:[["Window opens","Monday 09:00, the week before"],["Window closes","Thursday 18:00"],["On close","Lock week · generate invoices · build registers and manifests"],
+     ["Reminders","24 hours and 2 hours before close", true],["Late requests after close","24h weekday notice, space and cover permitting"],["Weekend processing","Off", false]]},
+  {id:"ratios", group:"LOCATIONS", title:"Ratio configuration", icon:"shield", tint:"#e2705c",
+   blurb:"Illustrative thresholds used for forecasts. Not a regulatory determination.",
+   tags:["Demo values","Configurable"], badge:"Validate before production", badgeKind:"warn",
+   listLabel:"DEMO THRESHOLDS",
+   rows:[["School age (After School, Morning)","1 adult : 10 children"],["Crèche (1 to 2.5 years)","1 : 5"],["Preschool Junior","1 : 6"],["Preschool Senior (ECCE)","1 : 8"],
+     ["Forecast horizon","Today and tomorrow"],["Expired Garda vetting blocks rota","On", true]]},
+  {id:"teams", group:"ROLES", title:"Roles & permissions", icon:"shield", tint:"var(--accent)",
+   blurb:"Eight roles, each with a scope and what it may see.",
+   tags:["8 roles","Location scope","Masked medical"],
+   heroLabel:"ROLE PREVIEW", heroAction:"Switch role in the header",
+   heroText:"Use Role Preview in the header to see exactly what each person sees: the owner sees everything, a location manager sees one site, a driver sees their route, a parent sees only their own family.",
+   listLabel:"ROLES",
+   rows:[["Owner","All sites, all data"],["Operations Manager","All sites, no payroll detail"],["Accounts Team","Billing, debt, NCS financials"],["NCS Administrator","CHICKs, hours, claims"],
+     ["Location Manager","One site only"],["Room Leader / Practitioner","Room and child updates, no finance"],["Driver","Assigned route, collector checks"],["Parent","Own family only, in MyRosKids"]]},
+  {id:"fees", group:"FEE POLICIES", title:"Fee policies", icon:"data", tint:"#5fe0a8",
+   blurb:"Published operating policies, held as editable demo rules.",
+   tags:["Demo values","Not quoted fees"], badge:"Demo only", badgeKind:"warn",
+   footer:"Edit rates and fees in Billing → Fee Rules", action:"Open Fee Rules",
+   listLabel:"RAY OF SUNSHINE POLICY (NOT STATUTORY)",
+   rows:[["Invoices","Due on receipt"],["Late booking fee","€5.00 (demo)"],["School collection","€3.00 per run (demo)"],["Part hours","Billed to the next full hour"],
+     ["Locked week cancellations","No refund"],["Exceptional closures","Full fees · owner approval before any mass change", true],["Booking restriction after failed payment","Accounts approval required", true],["Leaving","Two months' written notice"]]},
+  {id:"plans", group:"FEE POLICIES", title:"Payment plans & debt", icon:"audit", tint:"#f0994b",
+   blurb:"How plans are agreed, monitored and escalated, with people deciding.",
+   tags:["Max 3 revisions","Owner decides escalation"],
+   listLabel:"RULES",
+   rows:[["Missed instalment","Raised to Accounts within a week"],["Plan revisions","At most 3"],["Third breach","Owner approval only for any debt-collection pack", true],["Automatic penalties","Off", false]]},
+  {id:"ncspol", group:"FEE POLICIES", title:"NCS policies", icon:"approvals", tint:"#8DB35E",
+   blurb:"Programme rules and our own operating rules, labelled separately.",
+   tags:["8-week rule","Thursday deadline","7-day acceptance"],
+   listLabel:"NCS PROGRAMME RULES · RoS OPERATING POLICY",
+   rows:[["Book agreed hours weekly","Programme expectation"],["Hours change","No more than every 8 weeks (camp-week increase exception)"],["CHICK or award","By Thursday before the week of service (RoS policy)"],
+     ["Claim acceptance","Seven days, reminders on Days 2, 4 and 6"],["Stopping NCS","Four weeks' notice (RoS policy)"],["Private charge after a lapse","Human review required", true]]},
+  {id:"integrations", group:"INTEGRATIONS", title:"Integrations", icon:"plug", tint:"#6ad0f0",
+   blurb:"Existing systems, proposed connections and what is demo only.",
+   tags:["2 existing","6 proposed","2 demo only"], badge:"Nothing live", badgeKind:"warn",
+   footer:"No integration is connected in this demo", action:"Review",
+   listLabel:"CONNECTIONS", rows:[]},
+  {id:"agents", group:"AI & GOVERNANCE", title:"Agents & AI controls", icon:"agent", tint:"var(--accent)",
+   blurb:"What agents may read, what they may do, and where a person must decide.",
+   tags:["13 agents","Approvals on every write"],
    heroLabel:"GLOBAL CONTROL", heroAction:"Pause every agent",
-   heroText:"One switch stops every agent immediately. Anything mid-run finishes its current step and then holds.",
-   footer:"Write and external tools always need a yes", action:"Review limits",
+   heroText:"One switch stops every agent. Child-safety events, debt escalation, booking blocks and NCS charge changes always go to a person.",
    listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Create approved agent roles","7 approved"],["Control which data agents can read","by permission"],
-     ["Control which actions agents can take","read · write · external"],["Set approval requirements","all write tools", true],
-     ["Set spending and usage limits","€40/month cap"],["Manage agent memory and retention","90 days"]]},
-  {id:"wf", group:"CONTROL", title:"Workflow controls", icon:"flow", tint:"#9d8cf5",
-   blurb:"The guardrails, not the builder — that lives under Work.",
-   tags:["Managers only","2 approval rules","Retry twice"],
-   footer:"Building workflows happens in Work", action:"Open Work",
-   listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Who can create workflows","Managers only"],["Maximum autonomy","proposes, never sends", true],
-     ["Approval rules","2 configured"],["Failure handling","retry twice, then notify"],
-     ["Usage limits","500 runs/day"],["Global pause","all workflows", true],["Default notification settings","inbox only"]]},
-  {id:"notif", group:"CONTROL", title:"Notifications", icon:"bell", tint:"#f0994b",
-   blurb:"Which events reach people, on which channel, and when not to.",
-   tags:["Inbox","WhatsApp","Quiet 19:00–07:00"],
-   listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Which events trigger notifications","14 of 21 events"],["Email","", true],["WhatsApp","", true],
-     ["Mobile push","", false],["In-app","", true],["Escalation rules","after 4 hours unread"],
-     ["Quiet hours","19:00–07:00"],["Daily and weekly summaries","07:00 daily"]]},
-
-  {id:"integrations", group:"SYSTEMS", title:"Integrations", icon:"plug", tint:"#6ad0f0",
-   blurb:"Email, accounting, CRM and messaging — and which way data flows.",
-   tags:["6 connected","1 disconnected","2 read-only"], badge:"Xero down", badgeKind:"bad",
-   footer:"Xero token expired 27 February", action:"Reconnect",
-   listLabel:"CONNECTIONS",
-   rows:[["Gmail","read and write"],["Xero","disconnected"],["Sage","read only"],["HubSpot","read and write"],
-     ["WhatsApp Business","write only"],["Resend","write only"],["Composio","not connected"]]},
-  {id:"modules", group:"SYSTEMS", title:"Modules & configuration", icon:"modules", tint:"#f0c04b",
-   blurb:"Turn modules on, and make Pulse speak the business's own words.",
-   tags:["3 installed","1 available","2 renamed terms"],
-   heroLabel:"TERMINOLOGY", heroAction:"Edit terminology",
-   heroText:"Organisation reads as Merchant, and Task reads as Job, everywhere in the interface — including what Helios says back to you.",
-   listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Enable or disable modules","3 installed"],["Rename business terminology","2 overridden"],
-     ["Create custom fields","9 fields"],["Configure statuses","6 sets"],["Edit record types","7 types"],
-     ["Set required information","per record type"],["Manage form layouts","4 layouts"]]},
-  {id:"health", group:"SYSTEMS", title:"Data health", icon:"health", tint:"#e2705c",
-   blurb:"What is wrong with the data, how bad it is, and the fix.",
-   tags:["7 issue types","231 records affected"], badge:"74 duplicates", badgeKind:"bad",
-   footer:"Last scanned 12 minutes ago", action:"Fix 3 automatically",
-   listLabel:"ISSUES FOUND",
-   trend:[312,289,274,256,248,241,231],
-   bySeverity:[["High","137",RED],["Medium","59",AMBER],["Low","35",DIM]],
-   issues:[["Duplicate records","74","high","Merge on matching name and VAT number","Fix automatically"],
-     ["Missing required fields","62","high","4 organisations have no billing email","Fix automatically"],
-     ["Failed imports","18","medium","Re-run the 14 August Sage batch","Retry"],
-     ["Out-of-date information","41","medium","Not touched in over 18 months","Review"],
-     ["Broken connections","1","high","Xero refresh token expired","Reconnect"],
-     ["Unmatched records","23","low","Invoices with no organisation attached","Review"],
-     ["Records needing review","12","low","Flagged by an agent as inconsistent","Review"]],
-   rows:[]},
-
-  {id:"security", group:"GOVERNANCE", title:"Security", icon:"lock", tint:"#8fa6ff",
-   blurb:"Sign-in, sessions, devices and the keys that reach the API.",
-   tags:["SSO on","2FA enforced","3 API keys"], badge:"2 advisories", badgeKind:"warn",
-   footer:"2 security recommendations open", action:"Review",
-   listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Single sign-on","Google Workspace", true],["Two-factor authentication","enforced", true],
-     ["Login policies","30-day session"],["Active sessions","51"],["Approved devices","44"],
-     ["IP restrictions","off", false],["Security alerts","on", true],["API keys","3 active"],
-     ["Data retention rules","7 years"]]},
-  {id:"audit", group:"GOVERNANCE", title:"Audit log", icon:"audit", tint:"#9d8cf5",
-   blurb:"A locked history of who changed what. Searchable, exportable, never editable.",
-   tags:["Append-only","7-year retention"],
-   footer:"Nobody can edit or delete entries", action:"Export",
+   rows:[["Agents can draft messages","On", true],["Agents can send messages","Off (people send)", false],["Agents can change invoices","Off", false],
+     ["Missing child alerts can be closed by an agent","Never", false],["Data agents can read","Scoped by role and location"],["Memory retention","90 days"]]},
+  {id:"audit", group:"AI & GOVERNANCE", title:"Audit & GDPR", icon:"audit", tint:"#9d8cf5",
+   blurb:"Who saw or changed what. Retention and access requests.",
+   tags:["Append-only","Role-masked medical"],
+   footer:"Every demo action is written to Activity", action:"Open Activity",
    listLabel:"WHAT IS RECORDED",
-   rows:[["Permission changes","41 this month"],["Employee access","118"],["Data exports","9"],
-     ["Integration changes","6"],["Agent actions","2,140"],["Deleted records","3"],["Admin changes","27"]]},
-  {id:"datamgmt", group:"GOVERNANCE", title:"Data management", icon:"data", tint:"#5fe0a8",
-   blurb:"Import, export, restore and — carefully — delete.",
-   tags:["Backup 02:00","30-day restore"],
-   footer:"Last backup completed 02:00 today", action:"Run backup",
-   listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Import data","CSV, Sage, HubSpot"],["Export data","full or per module"],["Backup status","healthy · 02:00 daily"],
-     ["Restore previous versions","30 days available"],["Merge records","74 candidates"],
-     ["Data retention","7 years"],["Delete company data","requires two admins"]]},
-
+   rows:[["Record views (sensitive)","Child medical, safeguarding"],["Approvals and decisions","Who, when, what changed"],["Data exports","CSV and print"],["Retention","Per records retention policy v2.0"]]},
+  {id:"health", group:"AI & GOVERNANCE", title:"Data health", icon:"health", tint:"#e2705c",
+   blurb:"What is incomplete or inconsistent, how bad it is, and the fix.",
+   tags:["6 issue types"], badge:"Consents incomplete", badgeKind:"warn",
+   footer:"Last scanned 08:40 today", action:"Fix",
+   listLabel:"ISSUES FOUND",
+   trend:[61,58,55,49,46,44,41],
+   bySeverity:[["High","2",RED],["Medium","27",AMBER],["Low","12",DIM]],
+   issues:[["Families with incomplete consents","29","medium","Photo, outing or transport consent missing","Chase in app"],
+     ["Website messages without Parent ID","1","low","Ask the parent for their ROS ID","Draft reply"],
+     ["Expired Garda vetting","1","high","Blocked from rota until renewed","Open staff file"],
+     ["Medication expiring this week","1","high","Ask the parent for a replacement","Open child"],
+     ["Children without a key worker","0","low","All assigned","Review"],
+     ["Invoices without a family","0","low","None","Review"]],
+   rows:[]},
   {id:"brand", group:"EXPERIENCE", title:"Branding", icon:"brand", tint:"var(--accent)",
-   blurb:"Logo, accent colour, templates and how agents appear.",
-   tags:["Lime accent","2 templates"],
+   blurb:"Ray of Sunshine identity on top of Pulse.",
+   tags:["Sun yellow","RoS blue","Navy"],
    listLabel:"WHAT YOU CONTROL HERE",
-   rows:[["Company logo","kilbride-mark.svg"],["Pulse accent colour","oklch(0.86 0.19 118)"],
-     ["Email templates","3"],["Document templates","2"],["Agent appearance","12 faces · 6 shells"],
-     ["Customer-facing portal branding","on", true]]},
+   rows:[["Logo","Ros-Circle-Logo.png (roskids.ie)"],["Accent (dark)","#FFF100 sun yellow, navy text on yellow"],["Accent (light)","#1B75BB RoS blue"],["Supporting","#53948D teal · #8DB35E green · #C6D22F lime"],["Parent portal branding","On", true]]},
   {id:"appearance", group:"EXPERIENCE", title:"Appearance & themes", icon:"brand", tint:"#6ad0f0",
-   blurb:"Pick a light or dark theme for how Pulse looks to you.",
-   tags:["8 themes","4 dark","4 light"],
+   blurb:"Pick a light or dark theme for how the OS looks to you.",
+   tags:["Sunshine (dark)","Light"],
    listLabel:"THEMES", rows:[]}
 ];
 
 const ADMIN_GROUPS = [
-  ["ORGANISATION", "repeat(3,1fr)"],
-  ["CONTROL", "repeat(3,1fr)"],
-  ["SYSTEMS", "repeat(3,1fr)"],
-  ["GOVERNANCE", "repeat(3,1fr)"],
-  ["EXPERIENCE", "repeat(3,1fr)"]
+  ["ORGANISATION", "repeat(2,1fr)"],
+  ["LOCATIONS", "repeat(3,1fr)"],
+  ["ROLES", "repeat(1,1fr)"],
+  ["FEE POLICIES", "repeat(3,1fr)"],
+  ["INTEGRATIONS", "repeat(1,1fr)"],
+  ["AI & GOVERNANCE", "repeat(3,1fr)"],
+  ["EXPERIENCE", "repeat(2,1fr)"]
 ];
 
 /* ---- activity feeds ---- */
-const SRC_TINT = {Gmail:"#f07a9d", Pulse:"var(--accent)", Sage:"#6ad0f0", WhatsApp:"#5fe0a8",
-  HubSpot:"#f0994b", Xero:"#8fa6ff", Agent:"var(--accent)"};
-const SRC_ABBR = {Gmail:"GM", Pulse:"PL", Sage:"SG", WhatsApp:"WA", HubSpot:"HS", Xero:"XR", Agent:"AI"};
+const SRC_TINT = {Operations:"var(--accent)", Financial:"#8DB35E", NCS:"#5fe0a8", Transport:"#9d8cf5", Safeguarding:"#ef6262",
+  Communications:"#6cb4ec", Staffing:"#f0c04b", Enrolment:"#C6D22F", System:"#8790b0"};
+const SRC_ABBR = {Operations:"OP", Financial:"€", NCS:"NC", Transport:"TR", Safeguarding:"SG", Communications:"CM", Staffing:"ST", Enrolment:"EN", System:"SY"};
 
-const DATA_EVENTS = [
-  ["New customer created","McKenna Transport was added from a web enquiry.","Web form","McKenna Transport","Pulse","completed"],
-  ["Invoice imported","INV-10512 for €3,240 arrived from Sage and matched to an open order.","Sage sync","Casey Builders","Sage","completed"],
-  ["Email received","Purchase order attached — parsed and filed against the account.","accounts@caseybuilders.ie","Casey Builders","Gmail","completed"],
-  ["File uploaded","Signed framework 2026.pdf — 6 pages indexed for Helios.","Aoife Nolan","Casey Builders","Pulse","completed"],
-  ["42 records imported","Nightly Sage sync brought in 42 invoice lines across 9 accounts.","Sage sync","9 organisations","Sage","completed"],
-  ["CRM record updated","Credit limit changed on the account after the August review.","HubSpot sync","Fitzgerald Heating","HubSpot","completed"],
-  ["Form submitted","Site survey request for a boiler replacement in Glanmire.","Web form","Ó Riain, Glanmire","Pulse","completed"],
-  ["WhatsApp message received","Photo of the meter reading filed against the visit.","Séamus Byrne","Ballincollig depot","WhatsApp","completed"],
-  ["External system synced","Xero connection retried and failed — token still expired.","Xero","148 invoices queued","Xero","failed"]
-];
+const DATA_EVENTS = [["Morning registers synced","Morning club children walked to school.","Kiosks","All sites","Pulse","completed"]];
 
-const PEOPLE_EVENTS = [
-  ["Aoife approved a refund","€412 written off on INV-10233 after the parts dispute closed.","Aoife Nolan","Glanmire Mechanical","Pulse","completed"],
-  ["Tom changed a booking","Thursday's depot visit moved to 11:00 to fit the delivery window.","Tom Walsh","Ballincollig depot","Pulse","completed"],
-  ["Mac assigned a task","Lease decision handed to himself, due Thursday.","Martin Kilbride","Ballincollig depot","Pulse","completed"],
-  ["Finance uploaded a report","August month-end close workbook, nine sheets.","Aoife Nolan","Head office","Pulse","completed"],
-  ["Niamh edited customer details","Billing email corrected so reminders stop bouncing.","Niamh Cronin","Dunne & Sons Ltd","Pulse","completed"],
-  ["Séamus completed a visit","Warranty callback closed — parts ordered on the spot.","Séamus Byrne","Fitzgerald Heating","Pulse","completed"],
-  ["Purchase order raised","PO-4471 for €14,280 sent up for sign-off.","Aoife Nolan","Munster Plumbing","Pulse","awaiting"],
-  ["Credit limit increase requested","€10,000 to €18,000 — waiting on the second approval.","Niamh Cronin","Casey Builders","Pulse","awaiting"]
-];
+const PEOPLE_EVENTS = [["Late booking request received","LBR-006 for Fri 23 Oct.","Emer Nolan","Nolan family","Pulse","awaiting"]];
 
-const AI_EVENTS = [
-  ["Finance Agent checked 143 invoices","Three accounts over their limit and €41.2k past 60 days.","Finance Agent","3 organisations","Agent","working"],
-  ["Sales Agent qualified a new lead","McKenna Transport scored 82/100 on company size, location and enquiry detail.","Sales Agent","McKenna Transport","HubSpot","working"],
-  ["Operations Agent updated a schedule","Van 04's jobs redistributed across two installers.","Operations Agent","Ballincollig depot","Agent","working"],
-  ["Helios prepared a report","Weekly management one-pager written and filed.","Helios","Management","Agent","working"],
-  ["Agent paused for approval","Chase email to Dunne & Sons drafted — needs your yes before it sends.","Finance Agent","Dunne & Sons Ltd","Agent","awaiting"],
-  ["Workflow failed","Certificate renewal reminder could not find a contact for Mallow yard.","Operations","Mallow yard","Agent","failed"],
-  ["Stock Watch raised order lines","Two lines below reorder point before Thursday's jobs.","Stock Watch","Munster Plumbing","Agent","working"],
-  ["Briefing Agent posted the morning brief","Two items needed you; the rest was noise.","Briefing Agent","Martin Kilbride","WhatsApp","completed"]
-];
+const AI_EVENTS = [["Morning brief prepared","Seven decisions across nine locations.","Owner Briefing","Amanda Spiteri","Agent","completed"]];
 
 const STREAM_DEFS = [
-  {id:"data", title:"New data", sub:"Information entering Pulse", pool:DATA_EVENTS, every:3200,
-   tint:"#6ad0f0", icon:"M4.5 7.5c0-1.7 3.4-3 7.5-3s7.5 1.3 7.5 3-3.4 3-7.5 3-7.5-1.3-7.5-3Z M4.5 7.5v9c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-9 M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"},
-  {id:"people", title:"Employee activity", sub:"Decisions people made", pool:PEOPLE_EVENTS, every:6400,
-   tint:"#f0c04b", icon:"M12 12.5a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2Z M5 20.2c.9-3.1 3.6-4.9 7-4.9s6.1 1.8 7 4.9"},
-  {id:"ai", title:"AI activity", sub:"Agents at work", pool:AI_EVENTS, every:4600,
+  {id:"data", title:"Systems", sub:"Feeds, kiosks and automations", pool:DATA_EVENTS, every:3200,
+   tint:"#6cb4ec", icon:"M4.5 7.5c0-1.7 3.4-3 7.5-3s7.5 1.3 7.5 3-3.4 3-7.5 3-7.5-1.3-7.5-3Z M4.5 7.5v9c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-9 M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"},
+  {id:"people", title:"People", sub:"Decisions staff and parents made", pool:PEOPLE_EVENTS, every:6400,
+   tint:"#8DB35E", icon:"M12 12.5a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2Z M5 20.2c.9-3.1 3.6-4.9 7-4.9s6.1 1.8 7 4.9"},
+  {id:"ai", title:"Agents", sub:"What the agents did and proposed", pool:AI_EVENTS, every:4600,
    tint:"var(--accent)", icon:"M2 12h4l2.5-6 3.5 12 3-8 2 2h5"}
 ];
 
 const NAV = [
   {label:"Home", icon:"helios", page:"Home"},
   {label:"Agents", icon:"navAgents", page:"Agents"},
-  {label:"Dashboard", icon:"navDash", page:"Dashboard", dot:true},
   {label:"Work", icon:"navWork", page:"Work"},
-  {label:"Records", icon:"navRecords", page:"Records"},
+  {label:"Records & Ontology", icon:"navRecords", page:"Records"},
   {label:"Activity", icon:"pulseLine", page:"Activity", dot:true}
 ];
 
 /* Inbox items follow the real InboxItem shape: what happened, why it matters, what I can do. */
-const ITEMS = {
-  po:{kind:"Approval", importance:"high", icon:ICONS.approvals, age:"18m",
-    title:"Purchase order PO-4471 — €14,280",
-    why:"Raised by Aoife Nolan. €4,280 above your sign-off threshold, so it routed to you.",
-    detail:"Both lines are below reorder point and committed to Thursday's jobs. Pricing matches the June supplier agreement. Approving writes the decision as you and fires core.approval.updated.",
-    actionLabel:"Approve", secondaryLabel:"Request changes", group:"Approvals",
-    fields:[{k:"Provider",v:"core.approvals"},{k:"Requested by",v:"Aoife Nolan"},{k:"Value",v:"€14,280"},{k:"Record",v:"PO-4471"}],
-    history:[{when:"Today 08:54",text:"Aoife Nolan raised the request"},{when:"Today 08:54",text:"Routed to Martin Kilbride — over threshold"}]},
-  sync:{kind:"Alert", importance:"critical", icon:ICONS.health, age:"6h",
-    title:"Xero sync failed — expired token",
-    why:"148 invoices have been queued since 02:14. Reconnecting posts them automatically.",
-    detail:"The refresh token was last authorised on 27 February. Third failure this year; moving the connection to the service account would stop it recurring. The dispatcher retried twice before dead-lettering.",
-    actionLabel:"Reconnect", secondaryLabel:"Snooze", group:"Alerts",
-    fields:[{k:"Provider",v:"core.notifications"},{k:"Integration",v:"Xero"},{k:"Queued",v:"148 invoices"},{k:"Event",v:"core.automation.failed"}],
-    history:[{when:"Today 02:14",text:"Sync failed — invalid_grant"},{when:"Today 02:16",text:"Retried twice, then dead-lettered"}]},
-  visit:{kind:"Task", importance:"high", icon:ICONS.visits, age:"2h",
-    title:"Site visit at Ballincollig depot is unassigned",
-    why:"Scheduled for tomorrow 09:00 with no installer against it.",
-    detail:"Contributed by the site-visits module through its own inbox provider. Core never learns what a visit is — it sorts by importance and age like everything else.",
-    actionLabel:"Assign installer", secondaryLabel:"Reschedule", group:"Work",
-    fields:[{k:"Provider",v:"site-visits.unassigned"},{k:"Entity",v:"site-visits.visit"},{k:"Scheduled",v:"Tomorrow 09:00"},{k:"Status",v:"scheduled"}],
-    history:[{when:"Yesterday 16:20",text:"Visit created by Tom Walsh"},{when:"Today 07:00",text:"Flagged unassigned by the briefing job"}]},
-  auto:{kind:"Alert", importance:"normal", icon:ICONS.autos, age:"3h",
-    title:"“Overdue reminder” skipped 4 contacts",
-    why:"Four organisations have no billing email, so the send step could not run.",
-    detail:"The automation ran at 08:00 and sent six of ten reminders. Each step is recorded in automation_run_steps with its input, output and error.",
-    actionLabel:"Fix the records", secondaryLabel:"Disable step", group:"Automations",
-    fields:[{k:"Automation",v:"Overdue invoice reminder"},{k:"Run",v:"partial"},{k:"Sent",v:"6 of 10"},{k:"Failed step",v:"notify.email"}],
-    history:[{when:"Today 08:00",text:"Run completed with warnings"},{when:"Yesterday 08:00",text:"Same 4 records skipped"}]},
-  task:{kind:"Task", importance:"normal", icon:ICONS.work, age:"Thu",
-    title:"Ballincollig lease renewal closes Thursday",
-    why:"No decision recorded against the contract and the notice period is 30 days.",
-    detail:"The lease runs to 31 October. Ballincollig carried 38% of counter revenue this year; rent is 4.1% of that.",
-    actionLabel:"Open record", secondaryLabel:"Assign", group:"Work",
-    fields:[{k:"Provider",v:"core.tasks"},{k:"Due",v:"Thu 27 Aug"},{k:"Assignee",v:"Martin Kilbride"},{k:"Priority",v:"high"}],
-    history:[{when:"18 Aug",text:"Task materialised from a recurring rule"},{when:"2 Feb",text:"Contract uploaded by Aoife Nolan"}]}
-};
-const ORDER = ["sync","po","visit","auto","task"];
+const ITEMS = {};
+const ORDER = [];
 
 const ANSWERS = {
-  credit:{tool:"core_search", effect:"read",
-    text:"Three organisations are over their agreed limit this morning, and €41.2k of the balance is past 60 days. Dunne & Sons is the one to act on: days-to-pay went from 12 to 74 since May while order volume held steady.",
-    cols:["Organisation","Balance","Over","Oldest"],
-    rows:[["Dunne & Sons","€28,410","€8,410","74d"],["Fitzgerald Heating","€9,240","€2,240","63d"],["Riverside Devs","€3,560","€560","61d"]],
-    actions:[["Draft chase emails",1],["Open Dunne & Sons",0]]},
-  jobs:{tool:"core_tasks_find", effect:"read",
-    text:"Eleven tasks are past their due date. Two slipped on Friday when Van 04 went off the road at Ballincollig; the other nine are waiting on stock. Ballincollig carries seven of the eleven, well above its usual share.",
-    cols:["Task","Subject","Late","Owner"],
-    rows:[["Boiler swap follow-up","Ó Riain, Glanmire","4d","S. Byrne"],["Bathroom fit sign-off","Casey Builders","3d","T. Walsh"],["Rad replace invoice","Kelleher, Cobh","2d","S. Byrne"]],
-    actions:[["Reassign the two van tasks",1],["Open Work → Overdue",0]]},
-  chase:{tool:"core_email_draft", effect:"write", confirm:true,
-    confirmSummary:"Send one chase email to accounts@dunneandsons.ie referencing INV-10428 (€28,410, 74 days), offering two instalments to 30 September.",
-    text:"Drafted. This is a write tool, so I have not sent it — the proposal is stored with a hash of the exact arguments, and confirming replays those stored arguments rather than anything from your yes.",
-    actions:[["Confirm and send",1],["Edit draft",0]]},
-  sync:{tool:"core_operations_health", effect:"read",
-    text:"The Xero connection failed at 02:14 with an expired refresh token — last authorised 27 February. Nothing was lost: 148 invoices are queued and post once reconnected. This is the third token failure this year, so it is worth moving the connection to the service account.",
-    actions:[["Open System health",1],["Assign to Aoife",0]]},
-  visits:{tool:"site_visits_find", effect:"read",
-    text:"Four site visits are booked this week and one has no installer against it. That tool is contributed by the site-visits module, not core — installing the module is what gave me the ability to answer this.",
-    cols:["Visit","Organisation","When","Status"],
-    rows:[["Boiler service","Casey Builders","Wed 09:00","scheduled"],["Survey","Ó Riain","Wed 14:00","scheduled"],["Depot check","Ballincollig","Thu 09:00","unassigned"]],
-    actions:[["Assign the unassigned visit",1],["Open Site visits",0]]},
-  fallback:{tool:"core_search", effect:"read",
-    text:"I can answer that from the records you have access to. Everything I reach goes through a registered tool with a declared permission — there is no SQL tool — and a record you may not see comes back as not found rather than forbidden.",
-    actions:[["Show me what you can do",0]]}
+  fallback:{tool:"ros_search", effect:"read",
+    text:"I can answer from the records your role can see across all nine locations. Anything that changes a record waits for a person to approve it.",
+    actions:[["What needs attention across our 9 locations?",1]]}
 };
-
-// Turns a plain-English filter name into a full dashboard area — the "primitive
-// vibe-coding" bit: no real backend, just a seeded generator so the same phrase
-// always produces the same numbers, with direction and vocabulary nudged by
-// keywords in the text (expansion/growth trends up, risk/issue trends down, a
-// region/cost/people/ops/customer word picks which metrics show).
 function synthesizeCustomArea(name){
   const trimmed = (name || "").trim();
   if (!trimmed) return null;
@@ -601,262 +517,184 @@ function synthesizeCustomArea(name){
 }
 
 function pickAnswer(q){
-  const s = q.toLowerCase();
-  if (/visit|site visit|installer/.test(s)) return ANSWERS.visits;
-  if (/chase|email|draft|send/.test(s)) return ANSWERS.chase;
-  if (/credit|limit|debtor|owe|outstanding|dunne/.test(s)) return ANSWERS.credit;
-  if (/task|late|overdue|slip|work/.test(s)) return ANSWERS.jobs;
-  if (/sync|xero|integration|token|fail|broke|health/.test(s)) return ANSWERS.sync;
   return ANSWERS.fallback;
 }
 
-const ORGS = [
-  ["Dunne & Sons Ltd","Customer","€28,410","74 days","on stop"],
-  ["Casey Builders","Customer","€6,120","12 days","active"],
-  ["Fitzgerald Heating","Customer","€9,240","63 days","watch"],
-  ["Munster Plumbing Supplies","Supplier","—","—","active"],
-  ["Riverside Developments","Customer","€3,560","61 days","watch"],
-  ["Glanmire Mechanical","Customer","€1,180","8 days","active"]
-];
-const TEAMS = [
-  ["Accounts","3 members","Aoife Nolan","core:approval:decide"],
-  ["Installers","9 members","Séamus Byrne","core:task:update"],
-  ["Trade counter","6 members","Niamh Cronin","core:person:view"],
-  ["Management","2 members","Martin Kilbride","all core permissions"]
-];
-const LOCATIONS = [
-  ["Head office","Little Island, Cork","14 staff","active"],
-  ["Ballincollig depot","Ballincollig, Cork","14 staff","lease review"],
-  ["Mallow yard","Mallow, Cork","4 staff","active"]
-];
+const ORGS = [];
+const TEAMS = [];
+const LOCATIONS = [];
 
 const AGENT_DEFS = [
-  {id:"close", name:"Month-end close", shape:"rim-capsule", tint:"#1b2430", state:"working", group:true,
-   members:["credit","briefing","ops"], role:"Credit Control, Briefing and Ops Watchdog working the same close",
-   when:"09:12", preview:"credit control: three accounts still open.",
+  {id:"huddle", name:"Morning huddle", shape:"rim-capsule", tint:"#1b2440", state:"working", group:true,
+   members:["briefing","rota","ncs"], role:"Owner Briefing, Ratio & Rota and NCS working today's decisions together",
+   when:"08:45", preview:"ratio & rota: arklow rocks is one short at 3pm.",
    thread:[
-     {kind:"stamp", text:"Today 09:04"},
-     {kind:"routine", text:"Ran routine", routine:"Month-end close"},
-     {kind:"agent", from:"credit", text:"three accounts are still open on the August ledger. Dunne & Sons is the only one that changed behaviour rather than just running late."},
-     {kind:"agent", from:"ops", text:"nothing technical is holding it up — the Xero token is back and all 148 queued invoices posted at 09:02."},
-     {kind:"agent", from:"briefing", text:"so the close is one decision, not three: what to do about Dunne. everything else reconciles."},
-     {kind:"user", text:"instalments, two payments to end of september"},
-     {kind:"agent", from:"credit", text:"drafted on those terms and parked it. sending is a write tool, so it waits for your yes."},
-     {kind:"agent", from:"briefing", text:"once that goes, August closes. i'll put the confirmation in tomorrow's briefing."}
+     {kind:"stamp", text:"Today 08:45"},
+     {kind:"routine", text:"Ran routine", routine:"Morning brief"},
+     {kind:"agent", from:"rota", text:"arklow rocks has 22 booked for 3pm after school with 2 on the rota against 3 at the demo 1:10. one practitioner is on approved leave. aisling byrne and ciara walsh are both qualified and free."},
+     {kind:"agent", from:"ncs", text:"NCS-0091 for the kelly family (€184.00) lapses at 17:00 today. days 2, 4 and 6 reminders went out. rachel asked last night how to accept it."},
+     {kind:"agent", from:"briefing", text:"so this morning is two quick decisions: approve arklow cover, and decide whether lorraine phones rachel kelly. everything else is in the brief and can wait until after 10."}
    ]},
-  {id:"briefing", name:"Briefing", shape:"crown-pebble", tint:"#191c1f", state:"complete", role:"Reads the whole business every morning and tells you the two things that matter",
-   when:"08:02", preview:"three things moved overnight. two need you.",
+  {id:"briefing", name:"Owner Briefing", shape:"crown-pebble", tint:"#191c3a", state:"complete", role:"Reads all nine locations at 08:45 and gives you the decisions that matter",
+   when:"08:45", preview:"seven decisions this morning. two are time-critical.",
+   thread:[
+     {kind:"stamp", text:"Today 08:45"},
+     {kind:"routine", text:"Ran routine", routine:"Morning brief"},
+     {kind:"agent", text:"morning brief, tuesday 20 october:", lines:[
+       {k:"Staffing", v:"Arklow Rocks 3pm: 2 of 3 · Gorey tomorrow: 4 of 5"},
+       {k:"NCS", v:"NCS-0091 Kelly €184.00 lapses 17:00 · 9 claims waiting"},
+       {k:"Money", v:"25 invoices overdue · Byrne missed €81 · Doyle pack waiting on you"},
+       {k:"Requests", v:"LBR-006 Nolan Friday · 12 others in the queue"}]},
+     {kind:"agent", text:"two things need you before 10: the arklow rocks relief, and the doyle debt pack (review only, nothing gets sent). the rest is with the right people."}
+   ]},
+  {id:"rota", name:"Ratio & Rota", shape:"glass-visor", tint:"#1d2440", state:"attention", role:"Forecasts required staff from bookings and proposes qualified cover",
+   when:"07:58", preview:"proposed aisling byrne for arklow rocks.",
+   thread:[
+     {kind:"stamp", text:"Today 07:30"},
+     {kind:"agent", text:"blocked shane molloy from the brookfield rota: garda vetting expired 2 october. orla has the renewal task."},
+     {kind:"stamp", text:"Today 07:58"},
+     {kind:"agent", text:"arklow rocks 3pm after school: 22 booked, 2 rostered, 3 required at 1:10 (demo). aisling byrne (level 6, vetting and first aid current) can do 09:00 to 17:30. approval APR-201 is with operations."}
+   ]},
+  {id:"ncs", name:"NCS", shape:"control-cube", tint:"#16241f", state:"waiting", role:"CHICKs, agreed hours, claims and the Thursday deadline",
+   when:"08:10", preview:"4 families under-booked for w/c 2 nov.",
    thread:[
      {kind:"stamp", text:"Today 08:00"},
-     {kind:"routine", text:"Ran routine", routine:"Morning briefing"},
-     {kind:"agent", text:"morning briefing:", lines:[
-       {k:"Cash", v:"€41.2k past 60 days · Dunne & Sons is 74 days"},
-       {k:"Work", v:"11 tasks late · 7 of them at Ballincollig"},
-       {k:"Approvals", v:"PO-4471 sitting with you since 08:54"}]},
-     {kind:"agent", text:"two things need you today: the purchase order, and a yes/no on the Ballincollig lease. everything else is covered."},
-     {kind:"user", text:"put the lease on Thursday"},
-     {kind:"agent", text:"done — task created against Ballincollig depot, due Thursday, assigned to you. i'll remind you Wednesday afternoon."}
+     {kind:"agent", text:"four families have booked fewer than their agreed hours for the week of 2 november. kelly is 12 of 15. i can draft reminders; nothing goes until lorraine reviews them."},
+     {kind:"agent", text:"14 CHICKs expire this month. thursday 12:00 is the cut-off for camp week, so i've proposed a private charge for one child with no valid CHICK (APR-205). that needs a person."}
    ]},
-  {id:"credit", name:"Credit Control", shape:"executive-capsule", tint:"#2a2118", state:"waiting", role:"Watches payment behaviour and drafts the chase before you ask",
-   when:"Yesterday", preview:"three drafts parked. nothing sent.",
+  {id:"collections", name:"Collections", shape:"executive-capsule", tint:"#2a2118", state:"waiting", role:"Reminders, bank matches, plans and approval-only escalations",
+   when:"08:00", preview:"byrne missed €81. doyle pack waits on the owner.",
    thread:[
-     {kind:"stamp", text:"Yesterday 16:40"},
-     {kind:"agent", text:"three accounts changed behaviour this week. i've drafted a chase for each and parked them — sending is a write tool, so they wait for you."},
-     {kind:"user", text:"what changed on dunne"},
-     {kind:"agent", text:"days-to-pay went 12 → 74 since May while order volume held steady. that pattern is a cash problem, not a dispute. i'd offer two instalments to 30 September before putting them on stop again."}
+     {kind:"stamp", text:"Today 00:05"},
+     {kind:"agent", text:"byrne (ROS1096) didn't pay the €81 instalment due yesterday. plan PLN-031 is on revision 3 of 3, so i can't propose another revision. follow-up call task is with gráinne for monday."},
+     {kind:"stamp", text:"Today 08:00"},
+     {kind:"agent", text:"reminder run done. one account hit day 10, so a booking restriction is now an accounts decision (APR-203). bank feed: 3 exact matches, 2 need a person, 1 unmatched."}
    ]},
-  {id:"visits", name:"Visit Scout", shape:"low-dome", tint:"#241b2e", state:"working", role:"Keeps the site-visit board honest and chases unassigned work",
-   when:"Yesterday", preview:"thursday's depot check still has nobody on it.",
+  {id:"bookings", name:"Bookings", shape:"rim-capsule", tint:"#1b2430", state:"working", role:"Booking window, late and change requests, capacity and ratio checks",
+   when:"08:15", preview:"LBR-006 checks out: notice, space and ratio.",
    thread:[
-     {kind:"stamp", text:"Yesterday 07:00"},
-     {kind:"agent", text:"four visits booked this week, one unassigned: Thursday 09:00 depot stock check. Séamus is the only installer free that morning."},
-     {kind:"user", text:"give it to séamus"},
-     {kind:"agent", text:"assigned. the module fired site-visits.visit.updated and the escalation automation stood down."}
+     {kind:"stamp", text:"Today 08:15"},
+     {kind:"agent", text:"emer nolan wants finn in on friday 15:00 to 18:00 with the st patrick's pickup. 79 hours' notice on a weekday, space at hazelbrook, ratio holds. fees on the demo rules come to €53. approve it in the inbox and i'll write the booking, invoice, register and manifest together."}
    ]},
-  {id:"stock", name:"Stock Watch", shape:"control-cube", tint:"#16241f", state:"thinking", role:"Reorder points, supplier lead times and what Thursday's jobs actually need",
-   when:"Mon", preview:"two lines below reorder point before thursday.",
+  {id:"transport", name:"Transport", shape:"wide-eyed", tint:"#20302a", state:"working", role:"Manifests from bookings, boarding, arrivals and pickup exceptions",
+   when:"07:00", preview:"6 manifests built. WKR-02 has 9 today.",
    thread:[
-     {kind:"stamp", text:"Monday 11:20"},
-     {kind:"agent", text:"two lines drop below reorder point before Thursday's jobs. Munster can cover both at the June agreement price — that's what PO-4471 is."}
+     {kind:"stamp", text:"Today 07:00"},
+     {kind:"agent", text:"manifests built for all six routes from accepted bookings. WKR-02 (gerry doran) has 9 children today, luca o'neill and finn nolan from st patrick's at 14:45. a missing child is always passed to a person; i can't close one."}
    ]},
-  {id:"ops", name:"Ops Watchdog", shape:"shield", tint:"#2b1b1e", state:"attention", role:"Sits on the event queue and tells you when something stopped working",
-   when:"02:16", preview:"xero token expired. 148 invoices queued, nothing lost.",
+  {id:"sunny", name:"Sunny", shape:"low-dome", tint:"#3a3410", state:"working", role:"Parent assistant in MyRosKids. Routes anything sensitive to staff",
+   when:"08:21", preview:"told sinéad luca is on WKR-02 today.",
    thread:[
-     {kind:"stamp", text:"Today 02:16"},
-     {kind:"agent", text:"the Xero connection failed at 02:14 — invalid_grant, token last authorised 27 February. 148 invoices are queued and post on reconnect. third time this year; move it to the service account."}
+     {kind:"stamp", text:"Today 08:21"},
+     {kind:"agent", text:"sinéad o'neill asked if luca is on the bus today. answered from the manifest: yes, WKR-02, pickup at st patrick's 14:45. she'll see it live in the app."}
    ]},
-  {id:"counter", name:"Counter Assistant", shape:"offset-pebble", tint:"#191c1f", state:"working", role:"Answers trade-counter questions on price, stock and account status",
-   when:"Fri", preview:"14 questions answered, 2 handed to niamh.",
+  {id:"compliance", name:"Compliance", shape:"precision-brow", tint:"#30201c", state:"waiting", role:"Certificates, incidents, medication and inspection readiness",
+   when:"07:05", preview:"one inhaler expires on sunday.",
    thread:[
-     {kind:"stamp", text:"Friday 17:30"},
-     {kind:"agent", text:"14 counter questions answered this week. two went to Niamh: both were credit-limit calls, which i won't make on my own."}
+     {kind:"stamp", text:"Today 07:00"},
+     {kind:"agent", text:"five staff certificates fall due inside 30 days and one garda vetting has lapsed. two incident reports are waiting on a parent signature. an inhaler at hazelbrook expires on 25 october; i've asked the room to request a replacement."}
    ]}
 ];
 
+/* Labels only: values are computed live from the Ray of Sunshine store (see ros/pulseData.ts). */
 const KPI_DEFS = {
-  revenue:{label:"Revenue", value:"€412,800", delta:"+6.2%", dir:"up", hint:"30 days", hero:true},
-  cash:{label:"Cash collected", value:"€368,140", delta:"+4.1%", dir:"up", hint:"30 days"},
-  overdue:{label:"Overdue debt", value:"€41,200", delta:"+€8,410", dir:"down", hint:"60 days+"},
-  margin:{label:"Gross margin", value:"31.4%", delta:"−0.6pt", dir:"down", hint:"vs last month"},
-  jobs:{label:"Jobs completed", value:"126", delta:"+4", dir:"up", hint:"30 days"},
-  nps:{label:"Repeat rate", value:"68%", delta:"+3pt", dir:"up", hint:"customers ordering again"},
-  pipeline:{label:"Open pipeline", value:"€212,400", delta:"+11%", dir:"up", hint:"quoted, not won"},
-  utilisation:{label:"Installer hours", value:"84%", delta:"−2pt", dir:"down", hint:"billable share"}
+  revenue:{label:"Invoiced this week", value:"€0", delta:"", dir:"up", hint:"w/c 19 Oct", hero:true},
+  cash:{label:"Collected", value:"€0", delta:"", dir:"up", hint:"this week"},
+  overdue:{label:"Aged debt", value:"€0", delta:"", dir:"down", hint:"past due"},
+  margin:{label:"Occupancy", value:"0%", delta:"", dir:"up", hint:"today"},
+  jobs:{label:"Children booked", value:"0", delta:"", dir:"up", hint:"today"},
+  nps:{label:"Collection rate", value:"0%", delta:"", dir:"up", hint:"month to date"},
+  pipeline:{label:"Waitlist", value:"0", delta:"", dir:"up", hint:"children"},
+  utilisation:{label:"NCS claims waiting", value:"0", delta:"", dir:"down", hint:"acceptance"}
 };
 
-const ASPECT_DEFS = [
-  {id:"sales", label:"Sales", color:"var(--accent)", owner:"NIAMH CRONIN", description:"Counter, trade accounts and quotes out the door.",
-   kind:"columns", chartTitle:"Revenue by month", chartUnit:"EUR",
-   chart:[["Sep",288,"€0k"],["Oct",301,"€0k"],["Nov",352,"€0k"],["Dec",376,"€0k"],["Jan",268,"€0k"],["Feb",294,"€0k"],["Mar",318,"€0k"],["Apr",341,"€0k"],["May",362,"€0k"],["Jun",384,"€0k"],["Jul",398,"€0k"],["Aug",413,"€0k"]],
-   splitTitle:"Where it came from",
-   split:[["Trade counter","€214.6k","72%",1],["Contract accounts","€156.8k","53%",0],["Online orders","€41.4k","18%",0]],
-   tableCols:["Account","Revenue","Change","Owner"],
-   table:[["Casey Builders","€48,210","+12.4%","Niamh Cronin"],["Dunne & Sons Ltd","€28,410","−18.2%","Aoife Nolan"],["Fitzgerald Heating","€21,860","+4.1%","Niamh Cronin"],["Riverside Developments","€18,240","+9.6%","Tom Walsh"]],
-   metrics:[["Revenue","€412,800","+6.2%","up","30 days",[.4,.55,.44,.62,.5,.7,.6,.78,1]],
-     ["Orders","318","+22","up","30 days",[.5,.6,.44,.7,.55,.75,.62,.8,.9]],
-     ["Average order","€1,298","+1.8%","up","vs last month",[.6,.58,.62,.6,.66,.64,.7,.68,.74]],
-     ["Quotes won","41%","−3pt","down","conversion",[.7,.66,.7,.6,.62,.55,.58,.5,.48]]]},
-  {id:"development", label:"Development", color:"#9fd6f0", owner:"TOM WALSH", description:"Modules shipped into the client build and what they contributed.",
-   kind:"rows", rows:[["approval routing","412 runs",412],["overdue reminder","308 runs",308],["visit escalation","286 runs",286],["xero sync","198 runs",198],["briefing job","80 runs",80]], chartTitle:"Runs by automation", chartUnit:"RUNS · 30 DAYS",
-   chart:[["Sep",620,"620"],["Oct",684,"684"],["Nov",712,"712"],["Dec",760,"760"],["Jan",802,"802"],["Feb",864,"864"],["Mar",918,"918"],["Apr",986,"986"],["May",1042,"1042"],["Jun",1128,"1128"],["Jul",1204,"1204"],["Aug",1284,"1284"]],
-   splitTitle:"Runs by module",
-   split:[["core","1,042","81%",1],["site-visits","198","15%",0],["ui-showcase","44","4%",0]],
-   tableCols:["Module","Version","Contributions","State"],
-   table:[["core","0.1.0","31 routes · 21 events","always installed"],["site-visits","1.0.0","1 entity · 2 tools","installed"],["ui-showcase","0.1.0","3 pages","installed"],["wholesale","—","6 entities · 9 tools","available"]],
-   metrics:[["Modules live","3","+1","up","this quarter",[.2,.2,.4,.4,.4,.6,.6,.6,1]],
-     ["Helios tools","11","+2","up","registered",[.4,.44,.5,.5,.6,.6,.7,.8,.9]],
-     ["Automation runs","1,284","+9%","up","30 days",[.5,.55,.6,.58,.66,.7,.72,.8,.86]],
-     ["Failure rate","0.9%","−0.4pt","up","of all runs",[.8,.74,.7,.62,.6,.5,.44,.4,.32]]]},
-  {id:"marketing", label:"Marketing", color:"#e6c78a", owner:"AOIFE NOLAN", description:"Reach, enquiries and what turned into an account.",
-   kind:"funnel", funnel:[["Enquiries","184","—",184],["Quoted","96","52% of enquiries",96],["Won","39","41% of quotes",39],["Repeat order","12","31% of wins",12]], chartTitle:"Enquiry to repeat order", chartUnit:"CONVERSION",
-   chart:[["Sep",96,"96"],["Oct",104,"104"],["Nov",88,"88"],["Dec",112,"112"],["Jan",124,"124"],["Feb",118,"118"],["Mar",136,"136"],["Apr",142,"142"],["May",151,"151"],["Jun",164,"164"],["Jul",172,"172"],["Aug",184,"184"]],
-   splitTitle:"Where they came from",
-   split:[["Referral","78","42%",1],["Search","61","33%",0],["Trade shows","29","16%",0],["Direct","16","9%",0]],
-   tableCols:["Channel","Enquiries","Change","Cost each"],
-   table:[["Referral","78","+18.2%","€0.00"],["Search","61","+9.4%","€24.60"],["Trade shows","29","−6.1%","€41.20"],["Direct","16","+2.0%","€0.00"]],
-   metrics:[["Enquiries","184","+31","up","30 days",[.3,.4,.36,.5,.46,.6,.58,.7,.86]],
-     ["New accounts","12","+4","up","opened",[.2,.3,.24,.4,.36,.5,.44,.6,.7]],
-     ["Cost per enquiry","€18.40","−€2.10","up","blended",[.8,.76,.7,.66,.6,.56,.5,.46,.4]],
-     ["Repeat rate","68%","+3pt","up","ordering again",[.5,.54,.58,.56,.62,.64,.66,.7,.74]]]},
-  {id:"operations", label:"Operations", color:"#dcded6", owner:"SÉAMUS BYRNE", description:"Installers, vans, site visits and the work queue.",
-   kind:"stacked", legend:["Head office","Ballincollig depot","Mallow yard"], stacked:[["Sep",[34,28,9]],["Oct",[36,30,9]],["Nov",[39,32,10]],["Dec",[37,31,10]],["Jan",[32,27,8]],["Feb",[35,29,9]],["Mar",[40,33,10]],["Apr",[43,35,11]],["May",[46,37,12]],["Jun",[49,39,12]],["Jul",[52,42,13]],["Aug",[64,48,14]]], chartTitle:"Jobs completed by month", chartUnit:"JOBS",
-   chart:[["Sep",88,"88"],["Oct",94,"94"],["Nov",102,"102"],["Dec",96,"96"],["Jan",84,"84"],["Feb",91,"91"],["Mar",104,"104"],["Apr",112,"112"],["May",118,"118"],["Jun",121,"121"],["Jul",124,"124"],["Aug",126,"126"]],
-   splitTitle:"By location",
-   split:[["Head office","64","51%",1],["Ballincollig depot","48","38%",0],["Mallow yard","14","11%",0]],
-   tableCols:["Installer","Jobs","On time","Location"],
-   table:[["Séamus Byrne","41","94%","Ballincollig"],["Tom Walsh","34","88%","Head office"],["Niamh Cronin","28","96%","Head office"],["Unassigned","4","—","Ballincollig"]],
-   metrics:[["Jobs completed","126","+4","up","30 days",[.5,.6,.5,.66,.6,.7,.66,.76,.84]],
-     ["Overdue tasks","11","+3","down","past due",[.3,.36,.3,.44,.4,.5,.56,.7,.85]],
-     ["Visits completed","38","+11%","up","30 days",[.4,.5,.6,.5,.66,.6,.72,.8,.9]],
-     ["Installer hours","84%","−2pt","down","billable",[.8,.78,.8,.76,.78,.74,.76,.72,.7]]]},
-  {id:"finance", label:"Finance", color:"#7fd8a4", owner:"AOIFE NOLAN", description:"Cash in, debt ageing and margin after cost.",
-   kind:"area", chartTitle:"Cash collected by month", chartUnit:"EUR",
-   chart:[["Sep",252,"€0k"],["Oct",268,"€0k"],["Nov",296,"€0k"],["Dec",318,"€0k"],["Jan",246,"€0k"],["Feb",264,"€0k"],["Mar",288,"€0k"],["Apr",306,"€0k"],["May",324,"€0k"],["Jun",342,"€0k"],["Jul",358,"€0k"],["Aug",368,"€0k"]],
-   splitTitle:"Debt by age",
-   split:[["0–30 days","€184.2k","61%",1],["31–60 days","€82.4k","27%",0],["61–90 days","€28.6k","9%",0],["90 days plus","€12.6k","4%",0]],
-   tableCols:["Account","Balance","Change","Oldest"],
-   table:[["Dunne & Sons Ltd","€28,410","+42.0%","74 days"],["Fitzgerald Heating","€9,240","+11.2%","63 days"],["Riverside Developments","€3,560","−4.4%","61 days"],["Glanmire Mechanical","€1,180","−22.0%","8 days"]],
-   metrics:[["Cash collected","€368,140","+4.1%","up","30 days",[.5,.56,.5,.62,.58,.68,.66,.74,.8]],
-     ["Overdue debt","€41,200","+€8,410","down","60 days plus",[.3,.34,.4,.38,.46,.5,.6,.7,.84]],
-     ["Gross margin","31.4%","−0.6pt","down","vs last month",[.7,.72,.7,.68,.68,.66,.64,.62,.6]],
-     ["Days to pay","38","+6","down","weighted",[.4,.44,.42,.5,.52,.6,.62,.7,.76]]]},
-  {id:"support", label:"Support", color:"#e2705c", owner:"NIAMH CRONIN", description:"Callbacks, warranty work and what came back twice.",
-   kind:"dots", target:12, targetLabel:"Target: 12 callbacks a month or fewer", chartTitle:"Callbacks by month", chartUnit:"COUNT",
-   chart:[["Sep",18,"18"],["Oct",16,"16"],["Nov",21,"21"],["Dec",19,"19"],["Jan",24,"24"],["Feb",22,"22"],["Mar",17,"17"],["Apr",15,"15"],["May",14,"14"],["Jun",12,"12"],["Jul",9,"9"],["Aug",7,"7"]],
-   splitTitle:"By cause",
-   split:[["Install fault","3","43%",1],["Part failure","2","29%",0],["User error","2","28%",0]],
-   tableCols:["Site","Callbacks","First-visit fix","Cost"],
-   table:[["Ó Riain, Glanmire","2","50%","€840"],["Casey Builders","2","100%","€410"],["Fitzgerald Heating","2","100%","€1,240"],["Kelleher, Cobh","1","100%","€650"]],
-   metrics:[["Open callbacks","7","−2","up","live",[.6,.58,.54,.5,.48,.44,.4,.38,.34]],
-     ["First-visit fix","82%","+4pt","up","of callbacks",[.5,.54,.56,.6,.6,.66,.7,.74,.8]],
-     ["Warranty cost","€3,140","−€420","up","30 days",[.7,.66,.62,.6,.54,.5,.46,.44,.4]],
-     ["Repeat faults","3","−1","up","same site",[.5,.5,.46,.4,.4,.36,.3,.3,.26]]]}
-];
+/* Replaced at render time by live areas from ros/pulseData.ts. */
+const ASPECT_DEFS = [];
 
 const FILTER_GROUPS = [
-  {title:"AREA", items:["Sales","Development","Marketing","Operations","Finance","Support"]},
-  {title:"SPINE", items:["Location","Team","Person","Organisation","Module"]},
-  {title:"TIME", items:["This week","This month","This quarter","Year to date"]}
+  {title:"AREA", items:["Occupancy","Finance","NCS","Staffing","Enrolment","Transport"]},
+  {title:"SCOPE", items:["Location","Room","Family","Staff"]},
+  {title:"TIME", items:["This week","This month","This term","Year to date"]}
 ];
 
 const OPS_DEFS = [
-  {id:"o1", name:"Weekly management report", kind:"report", owner:"Chief of Staff", ownerKind:"agent", initials:"CS",
-   trigger:"Mon, 08:00", triggerKind:"schedule", next:"3 days", last:"Sent to 4 people", status:"healthy", rate:98, on:true,
-   what:"Pulls last week's numbers from every area, writes the commentary and sends one page to the management team before Monday's meeting.",
-   why:"The meeting used to start with twenty minutes of people reading numbers off their own screens.",
-   saved:"6 hours a month",
-   steps:[["Trigger","Every Monday at 08:00"],["Find","Last week's metrics across all six areas"],["Check","Flag anything moving more than 10%"],["Draft","Write the one-page commentary"],["Send","Email the management team"],["Update","File the report against the week"]],
-   runs:[["Mon 08:00","1m 12s","ok","4 recipients","€0.04"],["Mon 25 Aug 08:00","1m 04s","ok","4 recipients","€0.04"],["Mon 18 Aug 08:00","58s","ok","4 recipients","€0.03"]]},
-  {id:"o2", name:"Chase unpaid invoices", kind:"automation", owner:"Finance Agent", ownerKind:"agent", initials:"FA",
-   trigger:"Daily, 09:00", triggerKind:"schedule", next:"Tomorrow", last:"3 drafts waiting", status:"approval", rate:94, on:true,
-   what:"Finds invoices past 14 days, excludes anything disputed, drafts a reminder in your tone and parks it for the finance manager.",
-   why:"Chasing was happening in bursts, so the oldest debt got the least attention.",
-   saved:"11 hours a month",
-   steps:[["Trigger","Every weekday at 09:00"],["Find","Unpaid invoices older than 14 days"],["Check","Exclude disputed invoices"],["Draft","Create personalised reminders"],["Approval","Finance manager reviews","gate"],["Send","Email the customer"],["Update","Record the activity in Pulse"]],
-   runs:[["Today 09:00","42s","partial","3 of 7 drafted","€0.02","4 organisations have no billing email"],["Yesterday 09:00","51s","ok","6 sent","€0.03"],["Mon 09:00","47s","ok","5 sent","€0.03"]]},
-  {id:"o3", name:"New enquiry follow-up", kind:"automation", owner:"Sales Agent", ownerKind:"agent", initials:"SA",
-   trigger:"New lead created", triggerKind:"event", next:"Event-based", last:"11 followed up today", status:"healthy", rate:99, on:true,
-   what:"Answers a new enquiry within minutes, asks the two questions the counter always needs, and creates the quote task.",
-   why:"Enquiries arriving after 5pm were sitting until the next morning.",
-   saved:"14 hours a month",
-   steps:[["Trigger","A lead is created in Pulse"],["Find","Match against existing organisations"],["Draft","Write the first reply"],["Send","Email the enquiry"],["Update","Create a quote task for the counter"]],
-   runs:[["Today 16:20","6s","ok","1 lead","€0.01"],["Today 15:02","7s","ok","1 lead","€0.01"],["Today 11:48","6s","ok","1 lead","€0.01"]]},
-  {id:"o4", name:"Certificate renewal reminder", kind:"routine", owner:"Operations", ownerKind:"person", initials:"TW",
-   trigger:"60 days before expiry", triggerKind:"event", next:"14:20", last:"Failed — missing contact", status:"failed", rate:71, on:true,
-   what:"Watches every installer certificate and insurance document, and gives sixty days' notice before one lapses.",
-   why:"A lapsed certificate stopped two jobs last year.",
-   saved:"3 hours a month",
-   steps:[["Trigger","60 days before a document expires"],["Find","The owner of the certificate"],["Check","Has a renewal already been booked?"],["Send","Notify the owner and Operations"],["Update","Create the renewal task"]],
-   runs:[["Today 14:20","3s","failed","0 of 2","€0.00","No contact on file for Mallow yard"],["Yesterday 14:20","4s","failed","0 of 1","€0.00","No contact on file for Mallow yard"],["Fri 14:20","5s","ok","1 notified","€0.01"]]},
-  {id:"o5", name:"Morning briefing", kind:"routine", owner:"Briefing Agent", ownerKind:"agent", initials:"BR",
-   trigger:"Weekdays, 07:00", triggerKind:"schedule", next:"Tomorrow", last:"Delivered 07:02", status:"healthy", rate:100, on:true,
-   what:"Reads the whole business overnight and tells you the two things that actually need you.",
-   why:"You were opening six screens before your first coffee.",
-   saved:"9 hours a month",
-   steps:[["Trigger","Every weekday at 07:00"],["Find","Overnight changes across cash, work and approvals"],["Check","Drop anything already handled"],["Draft","Write the briefing"],["Send","Post to Home and WhatsApp"]],
-   runs:[["Today 07:00","22s","ok","1 briefing","€0.02"],["Yesterday 07:00","19s","ok","1 briefing","€0.02"],["Mon 07:00","24s","ok","1 briefing","€0.02"]]},
-  {id:"o6", name:"Weekly stock check", kind:"task", owner:"Stock Watch", ownerKind:"agent", initials:"SW",
-   trigger:"Thursdays, 09:00", triggerKind:"schedule", next:"Thu 09:00", last:"2 lines flagged", status:"healthy", rate:96, on:true,
-   what:"Compares reorder points against what the week's jobs need and raises the purchase order lines.",
-   why:"Two jobs were rescheduled in June for parts nobody had ordered.",
+  {id:"o1", name:"Friday nine-location report", kind:"report", owner:"Owner Briefing", ownerKind:"agent", initials:"OB",
+   trigger:"Fri, 16:00", triggerKind:"schedule", next:"Fri 16:00", last:"Sent to Amanda", status:"healthy", rate:100, on:true,
+   what:"One page for Amanda: occupancy, cash, debt, NCS, staffing risks and incidents across all nine sites, with links into every figure.",
+   why:"Weekly numbers were assembled from separate spreadsheets every Friday afternoon.",
    saved:"5 hours a month",
-   steps:[["Trigger","Every Thursday at 09:00"],["Find","Lines below reorder point"],["Check","What this week's jobs need"],["Approval","Buyer confirms the order","gate"],["Update","Raise the purchase order"]],
-   runs:[["Thu 09:00","31s","ok","2 lines","€0.02"],["Thu 21 Aug 09:00","28s","ok","1 line","€0.02"]]},
-  {id:"o7", name:"Xero invoice sync", kind:"automation", owner:"Ops Watchdog", ownerKind:"agent", initials:"OW",
-   trigger:"Hourly", triggerKind:"schedule", next:"Paused", last:"Token expired", status:"failed", rate:62, on:false,
-   what:"Posts every finalised invoice into Xero and reconciles what came back.",
-   why:"Manual re-entry was the single biggest source of mismatched invoices.",
-   saved:"18 hours a month",
-   steps:[["Trigger","Every hour"],["Find","Invoices not yet in Xero"],["Send","Post to Xero","external"],["Check","Reconcile what came back"],["Update","Mark them synced"]],
-   runs:[["Today 02:14","1.2s","failed","0 of 148","€0.00","invalid_grant: refresh token expired 27 February"],["Today 01:14","1.1s","failed","0 of 141","€0.00","invalid_grant: refresh token expired 27 February"],["Yesterday 23:14","4s","ok","12 posted","€0.01"]]},
-  {id:"o8", name:"Weekend on-call handover", kind:"routine", owner:"Chief of Staff", ownerKind:"agent", initials:"CS",
-   trigger:"Fri, 16:30", triggerKind:"schedule", next:"Fri 16:30", last:"Sent to 3 people", status:"healthy", rate:97, on:true,
-   what:"Writes the weekend handover: open jobs, who is on call, and anything a customer is waiting on.",
-   why:"Weekend calls were being answered by whoever picked up, with no context.",
-   saved:"4 hours a month",
-   steps:[["Trigger","Every Friday at 16:30"],["Find","Open jobs and unanswered customers"],["Draft","Write the handover note"],["Send","WhatsApp the on-call rota"]],
-   runs:[["Fri 16:30","18s","ok","3 recipients","€0.02"],["Fri 15 Aug 16:30","21s","ok","3 recipients","€0.02"]]},
-  {id:"o9", name:"Timesheet reminder", kind:"task", owner:"Operations", ownerKind:"person", initials:"TW",
-   trigger:"Fri, 15:00", triggerKind:"schedule", next:"Fri 15:00", last:"9 of 12 submitted", status:"approval", rate:88, on:true,
-   what:"Nudges anyone who has not filed hours, then sends Operations the list still outstanding.",
-   why:"Payroll was chasing the same four people every week.",
+   steps:[["Trigger","Every Friday at 16:00"],["Find","Week's bookings, invoices, claims and incidents"],["Check","Flag anything that moved more than 10%"],["Draft","Write the one-page report"],["Send","Post to Home (demo)"]],
+   runs:[["Fri 16 Oct 16:00","48s","ok","1 report","€0.03"],["Fri 9 Oct 16:00","51s","ok","1 report","€0.03"]]},
+  {id:"o2", name:"Invoice reminder sequence", kind:"automation", owner:"Collections", ownerKind:"agent", initials:"CO",
+   trigger:"Daily, 08:00", triggerKind:"schedule", next:"Tomorrow", last:"11 sent · 1 block candidate", status:"approval", rate:96, on:true,
+   what:"Day 0 invoice, Day 2 friendly, Day 5 second, Day 7 final warning. At Day 10 it raises a booking-restriction candidate for Accounts to decide.",
+   why:"Chasing happened in bursts, so the oldest debt got the least attention.",
+   saved:"11 hours a month",
+   steps:[["Trigger","Every day at 08:00"],["Find","Unpaid invoices by days overdue"],["Check","Skip anything on an active plan"],["Draft","Stage-appropriate reminder"],["Approval","Accounts decides any booking restriction","gate"],["Update","Log to the family timeline"]],
+   runs:[["Today 08:00","38s","ok","11 reminders","€0.02"],["Yesterday 08:00","41s","ok","9 reminders","€0.02"]]},
+  {id:"o3", name:"Late booking checks", kind:"automation", owner:"Bookings", ownerKind:"agent", initials:"BK",
+   trigger:"Request received", triggerKind:"event", next:"Event-based", last:"6 checked today", status:"approval", rate:99, on:true,
+   what:"Checks notice, capacity and ratio for every late, change or cancellation request and prepares the fee lines.",
+   why:"Requests sat in three inboxes and were checked by hand against spreadsheets.",
+   saved:"14 hours a month",
+   steps:[["Trigger","A request arrives in any queue"],["Check","24h weekday notice"],["Check","Capacity and ratio for that session"],["Draft","Fee lines and the reply"],["Approval","Staff approve or decline","gate"],["Update","Booking, invoice, register and manifest together"]],
+   runs:[["Today 08:15","4s","ok","6 requests","€0.01"],["Yesterday 16:42","3s","ok","1 request","€0.00"]]},
+  {id:"o4", name:"Staff certificate expiry", kind:"routine", owner:"Compliance", ownerKind:"agent", initials:"CP",
+   trigger:"60 / 30 / 7 days", triggerKind:"event", next:"Tomorrow 07:00", last:"1 lapsed · rota blocked", status:"failed", rate:83, on:true,
+   what:"Watches Garda vetting, first aid, Children First and manual handling, and blocks a lapsed Garda vetting from the rota.",
+   why:"A lapsed certificate is a compliance risk that nobody saw until an audit.",
    saved:"3 hours a month",
-   steps:[["Trigger","Every Friday at 15:00"],["Find","Staff with no hours filed"],["Send","Remind each person"],["Approval","Operations signs off the week","gate"]],
-   runs:[["Fri 15:00","12s","partial","9 of 12","€0.01"],["Fri 15 Aug 15:00","11s","ok","12 of 12","€0.01"]]},
-  {id:"o10", name:"Overnight backup check", kind:"automation", owner:"Ops Watchdog", ownerKind:"agent", initials:"OW",
-   trigger:"Daily, 03:00", triggerKind:"schedule", next:"Tonight", last:"All systems clean", status:"healthy", rate:100, on:true,
-   what:"Confirms every nightly backup completed and the restore test passed, and raises an alert if not.",
-   why:"A failed backup went unnoticed for eleven days in January.",
-   saved:"2 hours a month",
-   steps:[["Trigger","Every day at 03:00"],["Check","Every backup job completed"],["Check","Last restore test passed"],["Send","Alert only if something failed"]],
-   runs:[["Today 03:00","8s","ok","6 jobs","€0.00"],["Yesterday 03:00","9s","ok","6 jobs","€0.00"]]},
-  {id:"o11", name:"Month-end close pack", kind:"report", owner:"Finance Agent", ownerKind:"agent", initials:"FA",
-   trigger:"1st, 07:00", triggerKind:"schedule", next:"1 Sep 07:00", last:"Delivered 1 Aug", status:"healthy", rate:95, on:true,
-   what:"Assembles the close pack: aged debt, margin by area, cash position and the variance commentary.",
-   why:"Close took three days of copying between spreadsheets.",
-   saved:"16 hours a month",
-   steps:[["Trigger","First of the month at 07:00"],["Find","Last month's ledger and margin data"],["Check","Reconcile against the bank"],["Draft","Write the variance commentary"],["Send","Email the pack to Finance"]],
-   runs:[["1 Aug 07:00","3m 42s","ok","1 pack","€0.09"],["1 Jul 07:00","3m 51s","ok","1 pack","€0.09"]]}
+   steps:[["Trigger","60, 30 and 7 days before expiry"],["Find","The staff member and their manager"],["Send","Reminder and task"],["Update","Block the rota if Garda vetting lapses"]],
+   runs:[["Today 07:00","3s","partial","5 due · 1 lapsed","€0.00"],["Yesterday 07:00","3s","ok","5 due","€0.00"]]},
+  {id:"o5", name:"Morning brief", kind:"routine", owner:"Owner Briefing", ownerKind:"agent", initials:"OB",
+   trigger:"Weekdays, 08:45", triggerKind:"schedule", next:"Tomorrow", last:"Delivered 08:45", status:"healthy", rate:100, on:true,
+   what:"Reads all nine locations and tells Amanda the few decisions that matter, each linked to its record.",
+   why:"The day started with six inboxes and nine phone calls.",
+   saved:"9 hours a month",
+   steps:[["Trigger","Every weekday at 08:45"],["Find","Ratios, approvals, NCS, debt, incidents"],["Check","Drop anything already handled"],["Draft","The brief"],["Send","Post to Home"]],
+   runs:[["Today 08:45","19s","ok","7 decisions","€0.02"],["Yesterday 08:45","17s","ok","5 decisions","€0.02"]]},
+  {id:"o6", name:"Manifest build", kind:"task", owner:"Transport", ownerKind:"agent", initials:"TR",
+   trigger:"Weekdays, 07:00", triggerKind:"schedule", next:"Tomorrow 07:00", last:"6 routes built", status:"healthy", rate:100, on:true,
+   what:"Builds each route's manifest from accepted bookings so drivers never work from an old list.",
+   why:"Drivers carried paper lists that missed late changes.",
+   saved:"6 hours a month",
+   steps:[["Trigger","Every weekday at 07:00"],["Find","After School bookings with a route"],["Check","Transport consent and collector notes"],["Update","Publish to the driver app"]],
+   runs:[["Today 07:00","6s","ok","6 routes","€0.00"],["Yesterday 07:00","6s","ok","6 routes","€0.00"]]},
+  {id:"o7", name:"NCS claim acceptance reminders", kind:"automation", owner:"NCS", ownerKind:"agent", initials:"NC",
+   trigger:"Day 2 · 4 · 6", triggerKind:"schedule", next:"Tomorrow 09:00", last:"3 reminders", status:"healthy", rate:98, on:true,
+   what:"Reminds parents to accept a claim inside the seven-day window and flags any that will lapse today.",
+   why:"Lapsed claims became private charges and difficult conversations.",
+   saved:"8 hours a month",
+   steps:[["Trigger","Days 2, 4 and 6 after a claim is raised"],["Send","App and SMS reminder (simulated)"],["Check","Flag claims lapsing today"]],
+   runs:[["Today 09:00","5s","ok","3 reminders","€0.00"],["Yesterday 09:00","5s","ok","4 reminders","€0.00"]]},
+  {id:"o8", name:"Bank feed reconciliation", kind:"automation", owner:"Collections", ownerKind:"agent", initials:"CO",
+   trigger:"Daily, 06:30", triggerKind:"schedule", next:"Tomorrow 06:30", last:"3 exact · 2 ambiguous", status:"approval", rate:94, on:true,
+   what:"Suggests matches between bank lines and invoices; ambiguous ones wait for a person.",
+   why:"Reconciliation took a morning a week.",
+   saved:"10 hours a month",
+   steps:[["Trigger","Daily at 06:30"],["Find","New bank lines (sample feed)"],["Check","Amount, reference and payer"],["Approval","Ambiguous matches confirmed by Accounts","gate"],["Update","Mark invoices paid"]],
+   runs:[["Today 06:30","9s","partial","6 lines","€0.00"]]},
+  {id:"o9", name:"Booking window reminders", kind:"task", owner:"Bookings", ownerKind:"agent", initials:"BK",
+   trigger:"24h and 2h before close", triggerKind:"schedule", next:"Wed 18:00", last:"Window opened Mon", status:"healthy", rate:100, on:true,
+   what:"Reminds families who have not submitted for next week, 24 hours and 2 hours before the window closes.",
+   why:"Late bookings were mostly forgotten bookings.",
+   saved:"4 hours a month",
+   steps:[["Trigger","Wednesday 18:00 and Thursday 16:00"],["Find","Families not yet submitted"],["Send","App and SMS (simulated)"]],
+   runs:[["Mon 09:00","12s","ok","478 notified","€0.01"]]},
+  {id:"o10", name:"Daily diary drafts", kind:"routine", owner:"Daily Diary", ownerKind:"agent", initials:"DD",
+   trigger:"Daily, 15:30", triggerKind:"schedule", next:"Today 15:30", last:"34 drafted · 0 published", status:"healthy", rate:100, on:true,
+   what:"Turns practitioner notes into diary drafts. A practitioner always reviews and publishes.",
+   why:"Writing up diaries ate the end of every day.",
+   saved:"24 hours a month",
+   steps:[["Trigger","Practitioner notes through the day"],["Draft","Diary entries and observation tags"],["Approval","Practitioner publishes","gate"]],
+   runs:[["Today 08:40","22s","ok","34 drafts","€0.03"]]},
+  {id:"o11", name:"Month-end NCS return preview", kind:"report", owner:"NCS", ownerKind:"agent", initials:"NC",
+   trigger:"Last working day", triggerKind:"schedule", next:"Fri 30 Oct", last:"Prepared 30 Sep", status:"healthy", rate:100, on:true,
+   what:"Prepares the return file for review. Never submits it.",
+   why:"Returns were rebuilt from scratch each month.",
+   saved:"12 hours a month",
+   steps:[["Trigger","Last working day of the month"],["Find","Claims, attendance and awards"],["Draft","Export preview"],["Approval","NCS admin reviews","gate"]],
+   runs:[["30 Sep 17:00","2m 10s","ok","1 file","€0.05"]]}
 ];
 
 const OPS_FILTERS = [
@@ -865,105 +703,75 @@ const OPS_FILTERS = [
 ];
 
 const WORK_SECTIONS = [
-  {id:"tasks", label:"Tasks", blurb:"Everything assigned to you or your team, in one permission-filtered list.",
-   views:["All tasks","Due tasks","Review","Done"], filters:["Due date","Any status","Anyone","Any due date"]},
-  {id:"approvals", label:"Approvals", blurb:"Requests and their steps. Every decision is written as the person who made it.",
-   views:["Awaiting you","Awaiting others","Decided"], filters:["Raised date","Any value","Anyone"]},
-  {id:"workflows", label:"Workflows", blurb:"Automations and agent routines — what runs on its own, and who owns it.",
+  {id:"tasks", label:"Tasks", blurb:"Everything assigned to people, with owner, due date, department and the record it came from.",
+   views:["All tasks","Due tasks","Review","Done"], filters:[]},
+  {id:"approvals", label:"Approvals", blurb:"Decisions waiting on a person. Agents propose; people decide.",
+   views:["Awaiting you","Awaiting others","Decided"], filters:[]},
+  {id:"workflows", label:"Workflows", blurb:"Automations and agent routines: what runs on its own, and who owns it.",
    views:[], filters:[]},
-  {id:"schedules", label:"Schedules", blurb:"The team calendar: when recurring work fires and what it costs the week.",
+  {id:"schedules", label:"Schedule", blurb:"When recurring work fires across the week.",
    views:[], filters:[]}
 ];
 
-const WORK_TASKS = [
-  {id:"w1", title:"Chase INV-10428 — Dunne & Sons", status:"In progress", priority:"High", who:"AN",
-   due:"2d overdue", late:true, client:"Dunne & Sons Ltd", day:"Today", mins:"25 mins", view:"Due tasks"},
-  {id:"w2", title:"Reassign Van 04 jobs off Ballincollig", status:"In progress", priority:"High", who:"MK",
-   due:"Due today", late:false, client:"Ballincollig depot", day:"Today", mins:"50 mins", view:"Due tasks"},
-  {id:"w3", title:"Approve purchase order PO-4471", status:"Review", priority:"Medium", who:"MK",
-   due:"Due 12:00", late:false, client:"Munster Plumbing", day:"Today", mins:"15 mins", view:"Review"},
-  {id:"w4", title:"Sign off August counter stocktake", status:"Not started", priority:"Medium", who:"SB",
-   due:"No due date", late:false, client:"Head office", day:"Any day", mins:"Mins", view:"All tasks"},
-  {id:"w5", title:"Ballincollig lease decision", status:"Not started", priority:"High", who:"MK",
-   due:"Thursday", late:false, client:"Ballincollig depot", day:"Thu", mins:"1 hour", view:"All tasks"},
-  {id:"w6", title:"VAT return — August", status:"Done", priority:"Medium", who:"AN",
-   due:"Filed Friday", late:false, client:"Head office", day:"Fri", mins:"2 hours", view:"Done", done:true}
-];
+const WORK_TASKS = [];
 
-const WORKFLOWS = [
-  {name:"Overdue invoice reminder", state:"live", trigger:"schedule · daily 08:00",
-   actions:[["notify.email","write"],["tasks.create","write"]], lastRun:"Today 08:00",
-   result:"6 of 10 sent · partial", resultKind:"warn", runSummary:"11 ok · 3 partial",
-   runs:["ok","ok","partial","ok","ok","ok","partial","ok","ok","ok","ok","ok","partial","partial"]},
-  {name:"Approval routing over €10k", state:"live", trigger:"event · core.approval.created",
-   actions:[["approvals.route","read"],["notify.inbox","write"]], lastRun:"Today 08:54",
-   result:"ok", resultKind:"ok", runSummary:"14 ok",
-   runs:["ok","ok","ok","ok","ok","ok","ok","ok","ok","ok","ok","ok","ok","ok"]},
-  {name:"Unassigned visit escalation", state:"live", trigger:"event · site-visits.visit.created",
-   actions:[["notify.inbox","write"]], lastRun:"Today 07:00",
-   result:"ok", resultKind:"ok", runSummary:"9 ok · 1 failed",
-   runs:["idle","idle","ok","ok","failed","ok","ok","ok","idle","ok","ok","ok","ok","ok"]},
-  {name:"Xero invoice sync", state:"failing", trigger:"schedule · hourly",
-   actions:[["xero.post","external"]], lastRun:"Today 02:14",
-   result:"invalid_grant · dead-lettered", resultKind:"bad", runSummary:"4 failed",
-   runs:["ok","ok","ok","ok","ok","ok","ok","ok","ok","ok","failed","failed","failed","failed"]}
-];
+const WORKFLOWS = [];
 
 const SCHEDULES = [
-  {id:"s1", name:"Morning briefing", cadence:"Every weekday · 07:00", next:"Tomorrow 07:00", owner:"Briefing agent", on:true, day:1},
-  {id:"s2", name:"Overdue invoice reminder", cadence:"Daily · 08:00", next:"Tomorrow 08:00", owner:"Credit Control", on:true, day:1},
-  {id:"s3", name:"Xero invoice sync", cadence:"Hourly", next:"Paused", owner:"Ops Watchdog", on:false, day:0},
-  {id:"s4", name:"Weekly stock check", cadence:"Thursdays · 09:00", next:"Thu 09:00", owner:"Stock Watch", on:true, day:3},
-  {id:"s5", name:"Month-end close", cadence:"Last working day · 17:00", next:"Fri 17:00", owner:"Month-end close", on:true, day:4}
+  {id:"s1", name:"Morning brief", cadence:"Weekdays · 08:45", next:"Tomorrow 08:45", owner:"Owner Briefing", on:true, day:1},
+  {id:"s2", name:"Invoice reminder sequence", cadence:"Daily · 08:00", next:"Tomorrow 08:00", owner:"Collections", on:true, day:1},
+  {id:"s3", name:"Booking window closes", cadence:"Thursdays · 18:00", next:"Thu 18:00", owner:"Bookings", on:true, day:3},
+  {id:"s4", name:"NCS Thursday deadline check", cadence:"Thursdays · 12:00", next:"Thu 12:00", owner:"NCS", on:true, day:3},
+  {id:"s5", name:"Friday nine-location report", cadence:"Fridays · 16:00", next:"Fri 16:00", owner:"Owner Briefing", on:true, day:4}
 ];
 
-const WIDGET_DEFS = [["inbox","Action inbox"],["work","My work"],["activity","Activity"],["kpi","Today's numbers"],["visits","Site visits"]];
+const WIDGET_DEFS = [["inbox","Morning Brief"],["work","My work"],["activity","Activity"],["kpi","Today's numbers"],["visits","School runs today"]];
 const WORK_WIDGETS = [
-  {id:"queue", label:"My queue", value:"8", hint:"assigned to you", icon:"work", queue:"mine"},
-  {id:"late", label:"Running late", value:"11", hint:"past their due date", icon:"health", queue:"overdue"},
-  {id:"unassigned", label:"Unassigned", value:"1", hint:"nobody owns it yet", icon:"teams", queue:"unassigned"},
-  {id:"week", label:"Next 7 days", value:"4", hint:"due this week", icon:"visits", queue:"upcoming"}
+  {id:"queue", label:"My queue", value:"", hint:"assigned to you", icon:"work", queue:"mine"},
+  {id:"late", label:"Running late", value:"", hint:"past their due date", icon:"health", queue:"overdue"},
+  {id:"unassigned", label:"Unassigned", value:"", hint:"nobody owns it yet", icon:"teams", queue:"unassigned"},
+  {id:"week", label:"Next 7 days", value:"", hint:"due this week", icon:"visits", queue:"upcoming"}
 ];
 const PERSONALITIES = ["Straight-talking","Warm","Formal","Dry"];
 const ANSWER_STYLES = ["Short answers","Show the working","Ask before acting"];
 /* Every context source and every registered tool the agent could be granted —
    the builder shows the whole catalogue, grouped, rather than a sample. */
 const CONTEXT_DEFS = [
-  ["Organisations","records","Accounts, limits, payment behaviour"],
-  ["People","records","Contacts and internal staff"],
-  ["Files","records","Indexed documents and certificates"],
-  ["Tasks","work","Queues, owners, due dates"],
-  ["Site visits","work","Bookings, installers, outcomes"],
+  ["Families","records","Guardians, Parent IDs, flags"],
+  ["Children","records","Rooms, schools, collectors (role-masked medical)"],
+  ["Staff","records","Roles, sites, certificates"],
+  ["Bookings","work","Sessions, windows, requests"],
+  ["Attendance","work","Sign-ins, registers, manifests"],
   ["Approvals","work","What is waiting on a decision"],
-  ["Invoices","money","Issued, paid, past due"],
-  ["Quotes","money","Sent, accepted, expired"],
-  ["Payments","money","Receipts and allocations"],
+  ["Invoices","money","Issued, paid, overdue"],
+  ["Payment plans","money","Instalments and revisions"],
+  ["NCS","money","Awards, claims, agreed hours"],
   ["Activity log","system","Every event, agent and human"],
-  ["Modules","system","What this client has installed"],
-  ["Insights","system","Saved metrics and trends"]
+  ["Policies","system","Fee terms and operating rules"],
+  ["Reports","system","Occupancy, cash, debt"]
 ];
 const CONTEXT_SOURCES = CONTEXT_DEFS.map(c => c[0]);
 const SKILL_DEFS = [
   ["Search records","read"],["Summarise activity","read"],["Read invoices","read"],
-  ["Read site visits","read"],["Check permissions","read"],
-  ["Draft email","write"],["Create task","write"],["Update record","write"],
-  ["Schedule visit","write"],["Raise approval","write"],
-  ["Send email","external"],["Send WhatsApp","external"],["Post to Xero","external"],["Push to HubSpot","external"]
+  ["Read rota","read"],["Check ratios","read"],
+  ["Draft parent message","write"],["Create task","write"],["Propose approval","write"],
+  ["Prepare fee lines","write"],["Draft diary entry","write"],
+  ["Send message","external"],["Charge a card","external"],["Submit NCS return","external"],["Refer a debt","external"]
 ];
 /* The two questions the agent asks back once it knows the job. */
 const TRAIN_PHASES = [
-  ["Reading the whole ontology", "4,820 records"],
-  ["Learning how this business words things", "organisation → merchant"],
-  ["Researching the trade-supply domain", "12 sources"],
-  ["Writing its own system prompt", "1,240 tokens"]
+  ["Reading the whole ontology", "650 children · 480 families"],
+  ["Learning how Ray of Sunshine words things", "ROS Parent ID, SAC, ECCE, CHICK"],
+  ["Reading published policies", "fees, notice, NCS rules"],
+  ["Writing its own system prompt", "1,180 tokens"]
 ];
 const BRIEF_QUESTIONS = [
-  {title:"What should it cover?", sub:"Pick as many as you like — we can refine later.",
-   options:[["Calendar","Meetings and what is coming up"],["Email","Unread and actionable inbox items"],
-            ["Records","Accounts that moved since yesterday"],["Money","Cash, overdue and anything at risk"],
+  {title:"What should it cover?", sub:"Pick as many as you like.",
+   options:[["Staffing","Ratios, absences and relief"],["Money","Invoices, debt and plans"],
+            ["NCS","Claims, CHICKs and hours"],["Families","Requests and messages"],
             ["Something else","Tell me in the next message"]]},
   {title:"When should it land?", sub:"One is enough to start.",
-   options:[["Every morning 07:30","Before the yard opens"],["Weekdays 08:00","Monday to Friday only"],
+   options:[["Weekdays 08:45","Before the morning calls"],["Fridays 16:00","Weekly report"],
             ["Only when something changes","Event-driven, no noise"],["On demand","When you ask for it"]]}
 ];
 /* The words under a name, keyed to the same state the face lights with. */
@@ -985,14 +793,14 @@ const FACE_TINTS = [
 
 /* ---- ontology graph: generation, Dijkstra traversal, canvas render ---- */
 const CLUSTERS = [
-  ["Organisations", "#c8f04b", 0.00, 0.62, 46],
-  ["People",        "#6ad0f0", 0.90, 0.70, 52],
-  ["Files",         "#b06cf0", 1.75, 0.66, 58],
-  ["Tasks",         "#f0c04b", 2.55, 0.72, 44],
-  ["Invoices",      "#f0567f", 3.35, 0.60, 38],
-  ["Site visits",   "#5fe0a8", 4.15, 0.70, 40],
-  ["Locations",     "#f0803a", 4.95, 0.64, 30],
-  ["Approvals",     "#5f7cf0", 5.65, 0.72, 34]
+  ["Families",      "#FFF100", 0.00, 0.62, 46],
+  ["Children",      "#6cb4ec", 0.90, 0.70, 56],
+  ["Staff",         "#8DB35E", 1.75, 0.66, 44],
+  ["Bookings",      "#f0c04b", 2.55, 0.72, 52],
+  ["Invoices",      "#f0567f", 3.35, 0.60, 40],
+  ["NCS",           "#5fe0a8", 4.15, 0.70, 34],
+  ["Locations",     "#f0803a", 4.95, 0.64, 26],
+  ["Routes",        "#9d8cf5", 5.65, 0.72, 30]
 ];
 
 function mulberry(seed){

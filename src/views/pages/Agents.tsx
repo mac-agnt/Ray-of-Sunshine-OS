@@ -7,8 +7,8 @@ type Props = { v: any };
 export default function Agents({ v }: Props) {
   return (
     <>
-      <div style={{"display":"flex","height":"100%","minHeight":"0","animation":"riseIn .4s var(--ease) both"}}>
-        <div style={{"width":"320px","flex":"none","minHeight":"0","display":"flex","flexDirection":"column","borderRight":"1px solid var(--border)","overflow":"hidden"}}>
+      <div style={{"display":"flex","flexDirection":v.narrow ? "column" : "row","height":"100%","minHeight":"0","animation":"riseIn .4s var(--ease) both"}}>
+        <div style={{"width":v.narrow ? "100%" : "320px","maxHeight":v.narrow ? "38%" : "none","flex":"none","minHeight":"0","display":"flex","flexDirection":"column","borderRight":v.narrow ? "0" : "1px solid var(--border)","borderBottom":v.narrow ? "1px solid var(--border)" : "0","overflow":"hidden"}}>
           <div style={{"flex":"none","display":"flex","alignItems":"center","gap":"10px","padding":"16px 16px 10px"}}>
             <span style={{"flex":"1","fontSize":"20px","fontWeight":"600","letterSpacing":"-.4px"}}>
               {"Agents"}
